@@ -1,0 +1,737 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+
+    background: #080808;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+/* =========================================
+   MAIN ORDERS CONTAINER
+========================================= */
+
+.orders-container {
+
+    /*
+        Keep this according to your existing
+        sidebar width.
+    */
+
+    margin-left: 340px;
+
+    width: calc(100% - 380px);
+
+    min-height: 100vh;
+
+    padding: 40px 35px;
+
+}
+
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.orders-header {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.page-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #555555;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.orders-header h1 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 36px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+
+/* =========================================
+   TOTAL ORDERS
+========================================= */
+
+.orders-count {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 11px 15px;
+
+    background: #111111;
+
+    border: 1px solid #292929;
+
+}
+
+
+.orders-count span {
+
+    color: #666666;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.orders-count strong {
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+}
+
+
+
+/* =========================================
+   ORDERS LIST
+========================================= */
+
+.orders-list {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+
+/* =========================================
+   ORDER CARD
+
+   SAME DARK PATTERN AS PRODUCTS
+========================================= */
+
+.order {
+
+    width: 100%;
+
+    min-height: 105px;
+
+    padding: 10px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: #111111;
+
+    border: 1px solid #242424;
+
+    color: #ffffff;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.order:hover {
+
+    background: #151515;
+
+    border-color: #383838;
+
+}
+
+
+
+/* =========================================
+   ORDER NUMBER
+========================================= */
+
+.order-number {
+
+    width: 45px;
+
+    min-width: 45px;
+
+    align-self: flex-start;
+
+    padding-top: 12px;
+
+    color: #555555;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+
+/* =========================================
+   ORDER INFORMATION
+========================================= */
+
+.order-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+
+        1.35fr
+
+        1.1fr
+
+        1.1fr
+
+        0.55fr
+
+        0.55fr
+
+        1.6fr;
+
+    align-items: center;
+
+}
+
+
+
+/* =========================================
+   ORDER ITEM
+========================================= */
+
+.order-item {
+
+    min-width: 0;
+
+    min-height: 60px;
+
+    padding: 5px 17px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border-left: 1px solid #292929;
+
+}
+
+
+.order-item:first-child {
+
+    border-left: none;
+
+}
+
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.order-item span {
+
+    color: #5f5f5f;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.6px;
+
+    text-transform: uppercase;
+
+}
+
+
+
+/* =========================================
+   VALUE
+========================================= */
+
+.order-item strong {
+
+    color: #eeeeee;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+
+/* =========================================
+   SIZE
+========================================= */
+
+.size-value {
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 800 !important;
+
+}
+
+
+
+/* =========================================
+   ADDRESS
+========================================= */
+
+.address-item strong {
+
+    white-space: normal;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+/* =========================================
+   DELETE FORM
+========================================= */
+
+.delete-form {
+
+    margin-left: 5px;
+
+    flex-shrink: 0;
+
+}
+
+
+
+/* =========================================
+   DELETE BUTTON
+========================================= */
+
+.delete-order {
+
+    height: 34px;
+
+    padding: 0 14px;
+
+    background: transparent;
+
+    color: #555555;
+
+    border: 1px solid #292929;
+
+    border-radius: 0;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.delete-order:hover {
+
+    color: #ffffff;
+
+    background: #191919;
+
+    border-color: #ffffff;
+
+}
+
+
+
+/* =========================================
+   NO ORDERS
+========================================= */
+
+.no-orders {
+
+    width: 100%;
+
+    padding: 70px 30px;
+
+    background: #111111;
+
+    border: 1px solid #242424;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    margin-bottom: 15px;
+
+    color: #555555;
+
+    font-size: 25px;
+
+}
+
+
+.no-orders h2 {
+
+    margin: 0 0 8px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+
+.no-orders p {
+
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 11px;
+
+}
+
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .orders-container {
+
+        margin-left: 300px;
+
+        width: calc(100% - 330px);
+
+        padding: 35px 25px;
+
+    }
+
+
+    .order-info {
+
+        grid-template-columns:
+
+            1.3fr
+
+            1fr
+
+            1fr
+
+            0.6fr
+
+            0.6fr;
+
+    }
+
+
+    .address-item {
+
+        display: none;
+
+    }
+
+}
+
+
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .orders-container {
+
+        margin-left: 270px;
+
+        width: calc(100% - 290px);
+
+        padding: 30px 20px;
+
+    }
+
+
+    .order-info {
+
+        grid-template-columns:
+
+            1.2fr
+
+            1fr
+
+            0.7fr
+
+            0.7fr;
+
+    }
+
+
+    .order-item:nth-child(3) {
+
+        display: none;
+
+    }
+
+
+    .address-item {
+
+        display: none;
+
+    }
+
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .orders-container {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 25px 15px;
+
+    }
+
+
+    .orders-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .orders-count {
+
+        width: 100%;
+
+        justify-content: space-between;
+
+    }
+
+
+    .order {
+
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+        padding: 15px;
+
+    }
+
+
+    .order-number {
+
+        width: 40px;
+
+        min-width: 40px;
+
+    }
+
+
+    .order-info {
+
+        width: calc(100% - 55px);
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .order-item {
+
+        padding: 10px 12px;
+
+    }
+
+
+    .order-item:nth-child(3) {
+
+        display: flex;
+
+    }
+
+
+    .address-item {
+
+        display: flex;
+
+        grid-column: 1 / -1;
+
+    }
+
+
+    .delete-form {
+
+        width: 100%;
+
+        margin-left: 55px;
+
+    }
+
+
+    .delete-order {
+
+        width: 100%;
+
+    }
+
+}
+
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+    .orders-container {
+
+        padding: 20px 12px;
+
+    }
+
+
+    .orders-header h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .order-info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .order-item {
+
+        border-left: none;
+
+        border-top: 1px solid #292929;
+
+    }
+
+
+    .order-item:first-child {
+
+        border-top: none;
+
+    }
+
+
+    .delete-form {
+
+        margin-left: 0;
+
+    }
+
+}

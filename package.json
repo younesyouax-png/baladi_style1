@@ -1,0 +1,21 @@
+{
+  "name": "e_shop",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "younes",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.10.0",
+    "multer": "^2.3.0"
+  }
+}

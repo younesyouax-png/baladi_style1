@@ -1,0 +1,1123 @@
+
+/* =====================================================
+   BALADI STYLE — PREMIUM DASHBOARD
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "Montserrat", sans-serif;
+
+    color: #fff;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255, 255, 255, 0.06),
+            transparent 30%
+        ),
+        #080808;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard {
+    display: flex;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    position: fixed;
+
+    top: 18px;
+    left: 18px;
+    bottom: 18px;
+
+    width: 245px;
+
+    padding: 30px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 30, 30, 0.92),
+            rgba(12, 12, 12, 0.95)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+    z-index: 100;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.sidebar h2 {
+
+    padding: 0 15px;
+
+    margin-bottom: 50px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 36px;
+
+    font-weight: 400;
+
+    letter-spacing: 4px;
+
+    color: #fff;
+}
+
+.sidebar h2::after {
+
+    content: "";
+
+    display: block;
+
+    width: 30px;
+
+    height: 2px;
+
+    margin-top: 8px;
+
+    background: #fff;
+
+    opacity: 0.6;
+}
+
+
+/* =====================================================
+   SIDEBAR LINKS
+===================================================== */
+
+.sidebar a {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 16px;
+
+    margin-bottom: 6px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    text-decoration: none;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    border-radius: 14px;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* little indicator */
+
+.sidebar a::before {
+
+    content: "";
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: currentColor;
+
+    opacity: 0.5;
+
+    transition: 0.3s ease;
+}
+
+
+.sidebar a:hover {
+
+    color: #fff;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    transform: translateX(4px);
+}
+
+
+.sidebar a:hover::before {
+
+    width: 5px;
+    height: 5px;
+
+    opacity: 1;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.content {
+
+    width: calc(100% - 281px);
+
+    margin-left: 281px;
+
+    padding: 50px;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.content h1 {
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: clamp(55px, 7vw, 90px);
+
+    font-weight: 400;
+
+    letter-spacing: 2px;
+
+    line-height: 0.9;
+
+    margin-bottom: 35px;
+
+    color: #fff;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button {
+
+    border: none;
+
+    outline: none;
+
+    padding: 14px 22px;
+
+    color: #111;
+
+    background: #fff;
+
+    border-radius: 8px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+button:hover {
+
+    background: #e8e8e8;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+button:active {
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   ORDER CARD
+===================================================== */
+
+.order {
+
+    position: relative;
+
+    padding: 22px;
+
+    margin-top: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 18px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 13px;
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.3s ease,
+        border 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.order:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(255, 255, 255, 0.18);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/* =====================================================
+   CONTENT CARDS
+===================================================== */
+
+.card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+
+    background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #333;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #555;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+
+        width: 210px;
+
+        left: 12px;
+        top: 12px;
+        bottom: 12px;
+
+        border-radius: 22px;
+    }
+    .sidebar a{
+        font-size: 20px;
+    }
+
+    .content {
+
+        width: calc(100% - 235px);
+
+        margin-left: 235px;
+
+        padding: 35px;
+    }
+
+    .sidebar h2 {
+
+        font-size: 30px;
+
+        margin-bottom: 35px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .dashboard {
+
+        display: block;
+    }
+
+
+    /* ---------------------------------
+       MOBILE SIDEBAR
+    --------------------------------- */
+
+    .sidebar {
+
+        position: fixed;
+
+        top: 12px;
+        left: 12px;
+        right: 12px;
+
+        bottom: auto;
+
+        width: auto;
+
+        min-height: auto;
+
+        height: 65px;
+
+        padding: 0 18px;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        border-radius: 20px;
+    }
+
+
+    .sidebar h2 {
+
+        margin: 0;
+
+        padding: 0;
+
+        font-size: 27px;
+
+        letter-spacing: 3px;
+    };
+
+
+    .sidebar h2::after {
+
+        display: none;
+    }}
+    /* =========================================
+   PRODUCTS SECTION
+========================================= */
+
+.products-section {
+    width: 100%;
+    padding: 35px 40px 60px;
+    color: #111;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.products-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.products-section-header > div span {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.products-section-header h1 {
+    margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: .9;
+}
+
+
+/* =========================================
+   ADD PRODUCT BUTTON
+========================================= */
+
+.add-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 13px 20px;
+
+    background: #111;
+    color: #fff;
+
+    text-decoration: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    transition: .3s ease;
+}
+
+.add-product:hover {
+    background: #222;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   PRODUCTS LIST
+========================================= */
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* =========================================
+   PRODUCT ROW
+========================================= */
+
+.product-row {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        82px
+        minmax(220px, 1fr)
+        120px
+        230px
+        80px;
+
+    align-items: center;
+
+    min-height: 105px;
+
+    padding: 10px 16px 10px 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #151515 0%,
+            #101010 60%,
+            #181818 100%
+        );
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    overflow: hidden;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* subtle luxury line */
+
+.product-row::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: #fff;
+
+    transform: scaleY(0);
+
+    transform-origin: bottom;
+
+    transition: transform .35s ease;
+}
+
+
+.product-row:hover {
+    transform: translateX(5px);
+
+    border-color: rgba(255,255,255,.2);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.18);
+}
+
+
+.product-row:hover::before {
+    transform: scaleY(1);
+}
+
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+.product-thumb {
+    width: 68px;
+    height: 82px;
+
+    overflow: hidden;
+
+    background: #222;
+
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+
+.product-thumb img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1);
+}
+
+
+.product-row:hover .product-thumb img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   PRODUCT DETAILS
+========================================= */
+
+.product-details {
+    min-width: 0;
+    padding: 0 20px;
+}
+
+
+.product-number {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: #666;
+}
+
+
+.product-details h2 {
+    margin: 0 0 5px;
+
+    color: #fff;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+
+    letter-spacing: .7px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.product-details p {
+    margin: 0;
+
+    color: #777;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   PRICE
+========================================= */
+
+.product-price {
+    border-left: 1px solid rgba(255,255,255,.08);
+
+    padding-left: 20px;
+}
+
+
+.product-price span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #666;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.product-price strong {
+    color: #fff;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+
+.product-price small {
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    color: #777;
+    margin-left: 2px;
+}
+
+
+/* =========================================
+   STOCK
+========================================= */
+
+.product-stock {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding-left: 20px;
+
+    border-left: 1px solid rgba(255,255,255,.08);
+}
+
+
+.stock-item {
+    width: 40px;
+    height: 48px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    transition: .3s ease;
+}
+
+
+.stock-item span {
+    color: #777;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.stock-item strong {
+    color: #fff;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+}
+
+
+.stock-item:hover {
+    background: #fff;
+    border-color: #fff;
+}
+
+
+.stock-item:hover span,
+.stock-item:hover strong {
+    color: #111;
+}
+
+
+/* =========================================
+   ACTION
+========================================= */
+
+.product-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.product-action a {
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    transition: .3s ease;
+}
+
+
+.product-action a:hover {
+    color: #fff;
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   EMPTY PRODUCTS
+========================================= */
+
+.no-products {
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #111;
+
+    border: 1px solid rgba(0,0,0,.08);
+
+    text-align: center;
+}
+
+
+.no-products h2 {
+    margin: 0 0 5px;
+
+    color: #fff;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+
+.no-products p {
+    margin: 0 0 20px;
+
+    color: #666;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+}
+
+
+.no-products a {
+    color: #fff;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .product-row {
+        grid-template-columns:
+            75px
+            minmax(180px, 1fr)
+            100px
+            200px
+            65px;
+    }
+
+    .product-stock {
+        gap: 4px;
+        padding-left: 12px;
+    }
+
+    .stock-item {
+        width: 35px;
+        height: 44px;
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+
+    .products-section {
+        padding: 25px 20px 50px;
+    }
+
+    .product-row {
+        grid-template-columns:
+            70px
+            1fr
+            100px;
+        
+        gap: 5px;
+    }
+
+    .product-stock {
+        grid-column: 2 / 4;
+        border-left: none;
+        padding-left: 0;
+        margin-top: 8px;
+    }
+
+    .product-action {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .product-price {
+        grid-column: 3;
+        grid-row: 2;
+        border-left: none;
+        padding-left: 0;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .products-section {
+        padding: 20px 12px 40px;
+    }
+
+    .products-section-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .products-section-header h1 {
+        font-size: 40px;
+    }
+
+    .add-product {
+        padding: 11px 15px;
+    }
+
+
+    .product-row {
+        grid-template-columns: 65px 1fr;
+
+        padding: 10px;
+
+        min-height: auto;
+
+        gap: 12px;
+    }
+
+
+    .product-thumb {
+        width: 60px;
+        height: 75px;
+    }
+
+
+    .product-details {
+        padding: 0;
+    }
+
+
+    .product-details h2 {
+        font-size: 22px;
+    }
+
+
+    .product-details p {
+        max-width: 100%;
+    }
+
+
+    .product-price {
+        grid-column: 2;
+
+        padding: 10px 0 0;
+
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+
+    .product-stock {
+        grid-column: 1 / 3;
+
+        padding: 10px 0 0;
+
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,.08);
+
+        justify-content: flex-start;
+    }
+
+
+    .product-action {
+        grid-column: 2;
+        grid-row: 3;
+
+        justify-content: flex-end;
+    }
+
+}
+.delete-product {
+    background: transparent;
+    border: none;
+
+    color: #777;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+.delete-product:hover {
+    color: #ff4d4d;
+}

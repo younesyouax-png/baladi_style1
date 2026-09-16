@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Baladi Style — Dashboard Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility_lock" />
+    <link rel="stylesheet" href="/login.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=visibility" />
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <!-- Background decoration -->
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+
+        <!-- Login card -->
+        <section class="login-card">
+
+            <div class="brand">
+                <div class="logo">
+                    <img src="/logo.jpg" alt="Baladi Style">
+                </div>
+
+                <span>BALADI STYLE</span>
+            </div>
+
+            <div class="heading">
+                <p class="eyebrow">PRIVATE ACCESS</p>
+                <h1>WELCOME<br><span>BACK.</span></h1>
+                <p class="description">
+                    Sign in to access your store dashboard.
+                </p>
+            </div>
+
+            <form action="/login" method="POST">
+
+                <div class="input-group">
+                    <label for="username">USERNAME</label>
+
+                    <div class="input-box">
+                        
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                        >
+                    </div>
+                </div>
+
+
+                <div class="input-group">
+                    <label for="password">PASSWORD</label>
+
+                    <div class="input-box">
+                        
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button type="button" class="show-password" id="showPassword">
+                          <span class="material-symbols-outlined">
+                       visibility
+                    </span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="login-options">
+                    <label class="remember">
+                        <input type="checkbox" name="remember">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+
+                    <a href="#">Forgot password?</a>
+                </div>
+
+
+                <input class="login-btn" type="submit">
+                    
+                </input>
+
+            </form>
+
+            <div class="bottom-line">
+                <span></span>
+                <p>BALADI STYLE ADMIN</p>
+                <span></span>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        const showPassword = document.getElementById("showPassword");
+        const password = document.getElementById("password");
+
+        showPassword.addEventListener("click", () => {
+
+            if (password.type === "password") {
+                password.type = "text";
+
+                showPassword.innerHTML = `
+                   <span class="material-symbols-outlined">
+visibility_lock
+</span>
+                `;
+            } else {
+                password.type = "password";
+
+                showPassword.innerHTML = `
+                    <span class="material-symbols-outlined">
+                        visibility
+                    </span>
+                `;
+            }
+
+        });
+    </script>
+
+</body>
+</html>

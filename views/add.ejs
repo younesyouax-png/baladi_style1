@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Baladi Style — Add Product</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/landing.css">
+    <link rel="stylesheet" href="/add.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <%- include("slidebar") %>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <div class="page-header">
+
+            <div>
+                <p class="eyebrow">INVENTORY</p>
+
+                <h1>
+                    ADD<br>
+                    <span>PRODUCT.</span>
+                </h1>
+
+                <p class="subtitle">
+                    Create a new product and add it to your store.
+                </p>
+            </div>
+
+            <a href="/dashboard/products" class="back-btn">
+                ← PRODUCTS
+            </a>
+
+        </div>
+
+
+        <form
+            action="/dashboard/add_product"
+            method="POST"
+            enctype="multipart/form-data"
+            class="product-form"
+        >
+
+            <!-- ================= IMAGE ================= -->
+
+            <section class="form-card image-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="number">01</span>
+                        <h2>PRODUCT IMAGE</h2>
+                    </div>
+                </div>
+
+
+                <label for="productImage" class="upload-area">
+
+                    <div class="upload-content">
+
+                        <span class="material-symbols-outlined upload-icon">
+                            add_photo_alternate
+                        </span>
+
+                        <h3>DROP YOUR IMAGE</h3>
+
+                        <p>
+                            or click to browse
+                        </p>
+
+                        <small>
+                            JPG, PNG or WEBP
+                        </small>
+
+                    </div>
+
+                    <img id="preview" class="preview-image">
+
+                    <input
+                        type="file"
+                        id="productImage"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
+
+                </label>
+
+            </section>
+
+
+            <!-- ================= BASIC INFO ================= -->
+
+            <section class="form-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="number">02</span>
+                        <h2>BASIC INFORMATION</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="fields">
+
+                    <div class="field">
+
+                        <label for="name">
+                            PRODUCT NAME
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="e.g. Oversized Baladi Hoodie"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="price">
+                            PRICE
+                        </label>
+
+                        <div class="price-input">
+
+                            <input
+                                type="number"
+                                id="price"
+                                name="price"
+                                placeholder="0"
+                                min="0"
+                                required
+                            >
+
+                            <span>DA</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label for="description">
+                            DESCRIPTION
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Describe the product, material, fit, style..."
+                            rows="5"
+                            required
+                        ></textarea>
+                        
+
+                    </div>
+                    <div class="form-group">
+
+    <label for="category">
+        CATEGORY
+    </label>
+
+    <select name="category" id="category" required>
+
+        <option value="" disabled selected>
+            SELECT CATEGORY
+        </option>
+
+        <option value="clothes">
+            CLOTHES
+        </option>
+
+        <option value="accessories">
+            ACCESSORIES
+        </option>
+
+    </select>
+
+</div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SIZES ================= -->
+
+            <section class="form-card">
+
+                <div class="card-header size-header">
+
+                    <div>
+                        <span class="number">03</span>
+
+                        <h2>SIZE & STOCK</h2>
+                    </div>
+
+                    <p>
+                        Set the quantity available for every size.
+                    </p>
+
+                </div>
+
+
+                <div class="sizes">
+
+                    <div class="size-row">
+
+                        <label class="size-check">
+                            <input
+                                type="checkbox"
+                                name="sizes"
+                                value="S"
+                            >
+
+                            <span>S</span>
+                        </label>
+
+                        <div class="quantity">
+                            <label>QUANTITY</label>
+
+                            <input
+                                type="number"
+                                name="quantity_S"
+                                value="0"
+                                min="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="size-row">
+
+                        <label class="size-check">
+                            <input
+                                type="checkbox"
+                                name="sizes"
+                                value="M"
+                            >
+
+                            <span>M</span>
+                        </label>
+
+                        <div class="quantity">
+                            <label>QUANTITY</label>
+
+                            <input
+                                type="number"
+                                name="quantity_M"
+                                value="0"
+                                min="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="size-row">
+
+                        <label class="size-check">
+                            <input
+                                type="checkbox"
+                                name="sizes"
+                                value="L"
+                            >
+
+                            <span>L</span>
+                        </label>
+
+                        <div class="quantity">
+                            <label>QUANTITY</label>
+
+                            <input
+                                type="number"
+                                name="quantity_L"
+                                value="0"
+                                min="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="size-row">
+
+                        <label class="size-check">
+                            <input
+                                type="checkbox"
+                                name="sizes"
+                                value="XL"
+                            >
+
+                            <span>XL</span>
+                        </label>
+
+                        <div class="quantity">
+                            <label>QUANTITY</label>
+
+                            <input
+                                type="number"
+                                name="quantity_XL"
+                                value="0"
+                                min="0"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SUBMIT ================= -->
+
+            <div class="form-actions">
+
+                <a href="/dashboard/products" class="cancel">
+                    CANCEL
+                </a>
+
+                <button type="submit" class="save-btn">
+
+                    <span>SAVE PRODUCT</span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const imageInput = document.getElementById("productImage");
+const preview = document.getElementById("preview");
+
+imageInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (file) {
+
+        preview.src = URL.createObjectURL(file);
+
+        preview.style.display = "block";
+
+        document.querySelector(".upload-content").style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

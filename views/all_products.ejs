@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Products | Baladi Style</title>
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- ================= ICONS ================= -->
+
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search,add_shopping_cart"
+    >
+
+
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="/all_products.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="nav">
+
+        <!-- LOGO -->
+
+        <div class="logo_container">
+
+            <a href="/#hero">
+
+                <img
+                    src="/logo.jpg"
+                    alt="Baladi Style Logo"
+                >
+
+            </a>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <ul class="nav_links">
+
+            <li>
+                <a href="/#hero">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/#products">
+                    Products
+                </a>
+            </li>
+
+            <li>
+                <a href="/#feedbacks">
+                    Feedbacks
+                </a>
+            </li>
+
+            <li>
+                <a href="/#about">
+                    About
+                </a>
+            </li>
+
+        </ul>
+
+
+        <!-- NAV ICONS -->
+
+        <div class="nav_icons">
+
+            <span class="material-symbols-outlined">
+                search
+            </span>
+
+            <a href="#">
+
+                <span class="material-symbols-outlined">
+                    add_shopping_cart
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+
+    <!-- =========================================
+         PAGE HERO
+    ========================================== -->
+
+    <header class="products-hero">
+
+
+        <div class="hero-small">
+
+            BALADI STYLE / COLLECTION
+
+        </div>
+
+
+        <h1>
+
+            SHOP
+
+            <span>
+                THE DROP
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Discover our latest streetwear pieces
+            and accessories.
+
+        </p>
+
+
+    </header>
+
+
+
+    <!-- =========================================
+         SHOP
+    ========================================== -->
+
+    <section class="shop-container">
+
+
+        <!-- =====================================
+             TOOLBAR
+        ====================================== -->
+
+        <div class="shop-toolbar">
+
+
+            <!-- CATEGORIES -->
+
+            <div class="categories">
+
+
+                <button
+                    type="button"
+                    class="category-btn active"
+                    data-category="all"
+                >
+                    ALL
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="accessories"
+                >
+                    ACCESSORIES
+                </button>
+
+
+                <button
+                    type="button"
+                    class="category-btn"
+                    data-category="clothes"
+                >
+                    CLOTHES
+                </button>
+
+
+            </div>
+
+
+
+            <!-- PRODUCTS COUNT -->
+
+            <div class="products-count">
+
+                <span id="productsCount">
+
+                    <%= products.length %>
+
+                </span>
+
+                PRODUCTS
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             PRODUCTS GRID
+        ====================================== -->
+
+        <div class="all-products-grid">
+
+
+            <% products.forEach((product) => { %>
+
+
+                <article
+                    class="shop-product"
+                    data-category="<%= (product.category || '').trim().toLowerCase() %>"
+                >
+
+
+                    <!-- =========================
+                         PRODUCT IMAGE
+                    ========================== -->
+
+                    <div class="shop-product-image">
+
+
+                        <img
+                            src="/uploads/<%= product.Image %>"
+                            alt="<%= product.name %>"
+                            loading="lazy"
+                        >
+
+
+                        <span class="product-tag">
+
+                            NEW
+
+                        </span>
+
+
+
+                        <!-- VIEW PRODUCT -->
+
+                        <button
+                            type="button"
+                            class="product-view"
+                            onclick="openProductModal(
+                                '<%= product._id %>',
+                                '<%= product.name.replace(/'/g, "\\'") %>',
+                                '<%= product.price %>',
+                                '<%= (product.description || '').replace(/'/g, "\\'") %>',
+                                '/uploads/<%= product.Image %>',
+                                '<%= product.category || "" %>',
+                                '<%= product.quantity_S || 0 %>',
+                                '<%= product.quantity_M || 0 %>',
+                                '<%= product.quantity_L || 0 %>',
+                                '<%= product.quantity_XL || 0 %>'
+                            )"
+                        >
+
+                            VIEW ↗
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PRODUCT INFORMATION
+                    ========================== -->
+
+                    <div class="shop-product-info">
+
+
+                        <!-- CATEGORY -->
+
+                        <div class="product-category">
+
+                            <%= product.category
+                                ? product.category.toUpperCase()
+                                : "STREETWEAR"
+                            %>
+
+                        </div>
+
+
+
+                        <!-- NAME + PRICE -->
+
+                        <div class="product-name-price">
+
+
+                            <h2>
+
+                                <%= product.name %>
+
+                            </h2>
+
+
+                            <span>
+
+                                <%= product.price %> DA
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <p>
+
+                            <%= product.description %>
+
+                        </p>
+
+
+
+                        <!-- FOOTER -->
+
+                        <div class="product-footer">
+
+
+                            <span>
+
+                                AVAILABLE
+
+                            </span>
+
+
+                            <button style="border-radius: 0;background: rgb(32, 31, 31);color: white;padding: 5px;font-family: 'Sora',sans-serif;border: none;
+                                type="button"
+                                onclick="openProductModal(
+                                    '<%= product._id %>',
+                                    '<%= product.name.replace(/'/g, "\\'") %>',
+                                    '<%= product.price %>',
+                                    '<%= (product.description || '').replace(/'/g, "\\'") %>',
+                                    '/uploads/<%= product.Image %>',
+                                    '<%= product.category || "" %>',
+                                    '<%= product.quantity_S || 0 %>',
+                                    '<%= product.quantity_M || 0 %>',
+                                    '<%= product.quantity_L || 0 %>',
+                                    '<%= product.quantity_XL || 0 %>'
+                                )"
+                            >
+
+                                SHOP NOW →
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+            <% }) %>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             NO RESULTS
+        ====================================== -->
+
+        <div
+            class="no-results"
+            id="noResults"
+        >
+
+
+            <span>
+
+                00
+
+            </span>
+
+
+            <h2>
+
+                NOTHING HERE
+
+            </h2>
+
+
+            <p>
+
+                No products found in this category.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         PRODUCT MODAL
+    ========================================== -->
+
+    <div
+        class="product-modal"
+        id="productModal"
+    >
+
+
+        <!-- OVERLAY -->
+
+        <div
+            class="product-modal-overlay"
+            onclick="closeProductModal()"
+        >
+        </div>
+
+
+
+        <!-- MODAL BOX -->
+
+        <div class="product-modal-box">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeProductModal()"
+            >
+
+                ×
+
+            </button>
+
+
+
+            <!-- =================================
+                 LEFT SIDE
+            ================================== -->
+
+            <div class="modal-product">
+
+
+                <!-- IMAGE -->
+
+                <div class="modal-image">
+
+                    <img
+                        id="modalProductImage"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+
+
+                <!-- PRODUCT INFO -->
+
+                <div class="modal-product-info">
+
+
+                    <span
+                        class="modal-category"
+                        id="modalProductCategory"
+                    >
+                    </span>
+
+
+                    <h2
+                        id="modalProductName"
+                    >
+                    </h2>
+
+
+                    <div
+                        class="modal-price"
+                        id="modalProductPrice"
+                    >
+                    </div>
+
+
+                    <p
+                        id="modalProductDescription"
+                    >
+                    </p>
+
+
+                    <div class="modal-available">
+
+                        <span></span>
+
+                        AVAILABLE
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 RIGHT SIDE
+            ================================== -->
+
+            <div class="modal-order">
+
+
+                <!-- ORDER HEADER -->
+
+                <div class="order-header">
+
+
+                    <span>
+
+                        BALADI STYLE / ORDER
+
+                    </span>
+
+
+                    <h2>
+
+                        ORDER NOW
+
+                    </h2>
+
+
+                    <p>
+
+                        Fill in your information and
+                        we'll contact you to confirm
+                        your order.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     ORDER FORM
+                ================================== -->
+
+                <form
+                    action="/order"
+                    method="POST"
+                    id="orderForm"
+                >
+
+
+                    <!-- PRODUCT ID -->
+
+                    <input
+                        type="hidden"
+                        name="productId"
+                        id="orderProductId"
+                    >
+
+
+                    <!-- PRODUCT NAME -->
+
+                    <input
+                        type="hidden"
+                        name="productName"
+                        id="orderProductName"
+                    >
+
+
+                    <!-- PRODUCT PRICE -->
+
+                    <input
+                        type="hidden"
+                        name="price"
+                        id="orderProductPrice"
+                    >
+
+
+
+                    <!-- =========================
+                         FULL NAME
+                    ========================== -->
+
+                    <div class="order-field">
+
+
+                        <label>
+
+                            FULL NAME
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PHONE
+                    ========================== -->
+
+                    <div class="order-field">
+
+
+                        <label>
+
+                            PHONE NUMBER
+
+                        </label>
+
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            placeholder="05 XX XX XX XX"
+                            autocomplete="tel"
+                            required
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         ADDRESS
+                    ========================== -->
+
+                    <div class="order-field">
+
+
+                        <label>
+
+                            DELIVERY ADDRESS
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            name="address"
+                            placeholder="Your delivery address"
+                            autocomplete="street-address"
+                            required
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         SIZE
+                    ========================== -->
+
+                    <div class="order-field">
+
+
+                        <label>
+
+                            SIZE
+
+                        </label>
+
+
+
+                        <div class="size-options">
+
+
+                            <!-- S -->
+
+                            <label
+                                class="size-option"
+                                id="sizeS"
+                            >
+
+
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="S"
+                                >
+
+
+                                <span>
+
+                                    S
+
+                                </span>
+
+
+                                <small>
+
+                                    AVAILABLE
+
+                                </small>
+
+
+                            </label>
+
+
+
+                            <!-- M -->
+
+                            <label
+                                class="size-option"
+                                id="sizeM"
+                            >
+
+
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="M"
+                                >
+
+
+                                <span>
+
+                                    M
+
+                                </span>
+
+
+                                <small>
+
+                                    AVAILABLE
+
+                                </small>
+
+
+                            </label>
+
+
+
+                            <!-- L -->
+
+                            <label
+                                class="size-option"
+                                id="sizeL"
+                            >
+
+
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="L"
+                                >
+
+
+                                <span>
+
+                                    L
+
+                                </span>
+
+
+                                <small>
+
+                                    AVAILABLE
+
+                                </small>
+
+
+                            </label>
+
+
+
+                            <!-- XL -->
+
+                            <label
+                                class="size-option"
+                                id="sizeXL"
+                            >
+
+
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="XL"
+                                >
+
+
+                                <span>
+
+                                    XL
+
+                                </span>
+
+
+                                <small>
+
+                                    AVAILABLE
+
+                                </small>
+
+
+                            </label>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         QUANTITY
+                    ========================== -->
+
+                    <div class="order-field">
+
+
+                        <label>
+
+                            QUANTITY
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            name="quantity"
+                            id="orderQuantity"
+                            value="1"
+                            min="1"
+                            max="1"
+                            required
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PLACE ORDER
+                    ========================== -->
+
+                    <button
+                        type="submit"
+                        class="place-order"
+                    >
+
+
+                        <span>
+
+                            PLACE ORDER
+
+                        </span>
+
+
+                        <strong>
+
+                            →
+
+                        </strong>
+                        
+
+
+                   
+
+
+
+                    <!-- CASH ON DELIVERY -->
+
+                    <div class="cash-delivery">
+
+                        CASH ON DELIVERY
+
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+
+        /* =====================================
+           CATEGORY FILTER
+        ====================================== */
+
+        const categoryButtons =
+            document.querySelectorAll(".category-btn");
+
+
+        const products =
+            document.querySelectorAll(".shop-product");
+
+
+        const productsCount =
+            document.getElementById("productsCount");
+
+
+        const noResults =
+            document.getElementById("noResults");
+
+
+
+        categoryButtons.forEach(button => {
+
+
+            button.addEventListener("click", () => {
+
+
+                // Remove active
+
+                categoryButtons.forEach(btn => {
+
+                    btn.classList.remove("active");
+
+                });
+
+
+                // Add active
+
+                button.classList.add("active");
+
+
+                // Selected category
+
+                const selectedCategory =
+                    button.dataset.category
+                        .trim()
+                        .toLowerCase();
+
+
+                let visibleProducts = 0;
+
+
+
+                // Filter
+
+                products.forEach(product => {
+
+
+                    const productCategory =
+                        (product.dataset.category || "")
+                            .trim()
+                            .toLowerCase();
+
+
+
+                    if (
+                        selectedCategory === "all" ||
+                        productCategory === selectedCategory
+                    ) {
+
+
+                        product.classList.remove("hidden");
+
+                        visibleProducts++;
+
+
+                    } else {
+
+
+                        product.classList.add("hidden");
+
+
+                    }
+
+                });
+
+
+
+                // Counter
+
+                productsCount.textContent =
+                    visibleProducts;
+
+
+
+                // Empty state
+
+                if (visibleProducts === 0) {
+
+                    noResults.classList.add("show");
+
+                } else {
+
+                    noResults.classList.remove("show");
+
+                }
+
+
+            });
+
+
+        });
+
+
+
+        /* =====================================
+           PRODUCT MODAL
+        ====================================== */
+
+        function openProductModal(
+            id,
+            name,
+            price,
+            description,
+            image,
+            category,
+            quantityS,
+            quantityM,
+            quantityL,
+            quantityXL
+        ) {
+
+
+            // ===============================
+            // PRODUCT INFORMATION
+            // ===============================
+
+            document.getElementById(
+                "modalProductImage"
+            ).src = image;
+
+
+            document.getElementById(
+                "modalProductImage"
+            ).alt = name;
+
+
+            document.getElementById(
+                "modalProductName"
+            ).textContent = name;
+
+
+            document.getElementById(
+                "modalProductPrice"
+            ).textContent = price + " DA";
+
+
+            document.getElementById(
+                "modalProductDescription"
+            ).textContent = description;
+
+
+            document.getElementById(
+                "modalProductCategory"
+            ).textContent =
+                category
+                    ? category.toUpperCase()
+                    : "STREETWEAR";
+
+
+
+            // ===============================
+            // HIDDEN FORM DATA
+            // ===============================
+
+            document.getElementById(
+                "orderProductId"
+            ).value = id;
+
+
+            document.getElementById(
+                "orderProductName"
+            ).value = name;
+
+
+            document.getElementById(
+                "orderProductPrice"
+            ).value = price;
+
+
+
+            // ===============================
+            // RESET QUANTITY
+            // ===============================
+
+            const quantityInput =
+                document.getElementById(
+                    "orderQuantity"
+                );
+
+
+            quantityInput.value = 1;
+
+            quantityInput.max = 1;
+
+
+
+            // ===============================
+            // UPDATE SIZES
+            // ===============================
+
+            updateSize(
+                "sizeS",
+                quantityS
+            );
+
+
+            updateSize(
+                "sizeM",
+                quantityM
+            );
+
+
+            updateSize(
+                "sizeL",
+                quantityL
+            );
+
+
+            updateSize(
+                "sizeXL",
+                quantityXL
+            );
+
+
+
+            // ===============================
+            // SIZE CHANGE
+            // ===============================
+
+            const sizeInputs =
+                document.querySelectorAll(
+                    'input[name="size"]'
+                );
+
+
+            sizeInputs.forEach(input => {
+
+                input.onchange = function () {
+
+
+                    let maxQuantity = 1;
+
+
+                    if (this.value === "S") {
+
+                        maxQuantity =
+                            Number(quantityS);
+
+                    }
+
+
+                    if (this.value === "M") {
+
+                        maxQuantity =
+                            Number(quantityM);
+
+                    }
+
+
+                    if (this.value === "L") {
+
+                        maxQuantity =
+                            Number(quantityL);
+
+                    }
+
+
+                    if (this.value === "XL") {
+
+                        maxQuantity =
+                            Number(quantityXL);
+
+                    }
+
+
+                    quantityInput.max =
+                        maxQuantity;
+
+
+                    quantityInput.value = 1;
+
+
+                };
+
+            });
+
+
+
+            // ===============================
+            // SHOW MODAL
+            // ===============================
+
+            document.getElementById(
+                "productModal"
+            ).classList.add("active");
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
+
+
+        }
+
+
+
+        /* =====================================
+           UPDATE SIZE
+        ====================================== */
+
+        function updateSize(
+            elementId,
+            quantity
+        ) {
+
+
+            const element =
+                document.getElementById(
+                    elementId
+                );
+
+
+            const input =
+                element.querySelector(
+                    "input"
+                );
+
+
+            const status =
+                element.querySelector(
+                    "small"
+                );
+
+
+            quantity =
+                Number(quantity);
+
+
+
+            if (quantity > 0) {
+
+
+                // AVAILABLE
+
+                element.classList.remove(
+                    "unavailable"
+                );
+
+
+                input.disabled = false;
+
+
+                status.textContent =
+                    "AVAILABLE";
+
+
+            } else {
+
+
+                // UNAVAILABLE
+
+                element.classList.add(
+                    "unavailable"
+                );
+
+
+                input.disabled = true;
+
+
+                input.checked = false;
+
+
+                status.textContent =
+                    "UNAVAILABLE";
+
+
+            }
+
+
+        }
+
+
+
+        /* =====================================
+           CLOSE MODAL
+        ====================================== */
+
+        function closeProductModal() {
+
+
+            document.getElementById(
+                "productModal"
+            ).classList.remove("active");
+
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+
+
+        }
+
+
+
+        /* =====================================
+           ESC KEY
+        ====================================== */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+
+                if (event.key === "Escape") {
+
+                    closeProductModal();
+
+                }
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

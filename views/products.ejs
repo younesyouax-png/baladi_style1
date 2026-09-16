@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Products</title>
+
+    <link rel="stylesheet" href="/dashboard.css">
+
+</head>
+
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <%- include("slidebar") %>
+
+
+        <!-- CONTENT -->
+        <main class="content">
+
+            <h1>Products</h1>
+
+
+            <section class="products-section">
+
+
+                <!-- SECTION HEADER -->
+                <div class="products-section-header">
+
+                    <div>
+
+                        <span>INVENTORY</span>
+
+                        <h1>YOUR PRODUCTS</h1>
+
+                    </div>
+
+
+                    <a href="/add_product" class="add-product">
+                        + ADD PRODUCT
+                    </a>
+
+                </div>
+
+
+
+                <!-- PRODUCTS LIST -->
+                <div class="products-list">
+
+
+                    <% products.forEach((product, index) => { %>
+
+
+                        <div class="product-row">
+
+
+                            <!-- IMAGE -->
+                            <div class="product-thumb">
+
+                                <img
+                                    src="/uploads/<%= product.Image %>"
+                                    alt="<%= product.name %>"
+                                >
+
+                            </div>
+
+
+
+                            <!-- NAME + DESCRIPTION -->
+                            <div class="product-details">
+
+                                <span class="product-number">
+                                    #<%= String(index + 1).padStart(2, "0") %>
+                                </span>
+
+                                <h2>
+                                    <%= product.name %>
+                                </h2>
+
+                                <p>
+                                    <%= product.description %>
+                                </p>
+
+                            </div>
+
+
+
+                            <!-- PRICE -->
+                            <div class="product-price">
+
+                                <span>PRICE</span>
+
+                                <strong>
+                                    <%= product.price %>
+                                    <small>DA</small>
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- STOCK -->
+                            <div class="product-stock">
+
+
+                                <div class="stock-item">
+
+                                    <span>S</span>
+
+                                    <strong>
+                                        <%= product.quantity_S || 0 %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="stock-item">
+
+                                    <span>M</span>
+
+                                    <strong>
+                                        <%= product.quantity_M || 0 %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="stock-item">
+
+                                    <span>L</span>
+
+                                    <strong>
+                                        <%= product.quantity_L || 0 %>
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="stock-item">
+
+                                    <span>XL</span>
+
+                                    <strong>
+                                        <%= product.quantity_XL || 0 %>
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <!-- ACTION -->
+                            <div class="product-action">
+
+                                
+
+
+                                <form
+                                    action="/dashboard/delete_product/<%= product._id %>"
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this product?');"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="delete-product"
+                                    >
+                                        DELETE
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+                        </div>
+
+
+                    <% }) %>
+
+
+
+                    <!-- NO PRODUCTS -->
+                    <% if (products.length === 0) { %>
+
+                        <div class="no-products">
+
+                            <h2>NO PRODUCTS</h2>
+
+                            <p>
+                                You haven't added any products yet.
+                            </p>
+
+                        </div>
+
+                    <% } %>
+
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
