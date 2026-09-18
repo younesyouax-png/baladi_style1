@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const multer = require("multer");
+const cloudinary =require('./cloudinary')
 const mongoose = require("mongoose");
 const dns = require("dns");
 const { name } = require("ejs");
@@ -17,7 +18,7 @@ dns.setServers([
 // ==================== MULTER ====================
 
 const upload = multer({
-    dest: "public/uploads/"
+    dest: "tmp/"
 });
 
 // ==================== MONGOOSE ====================
@@ -105,13 +106,10 @@ mongoose
 
 app.post(
     "/dashboard/add_product",
-    requireAdmin,
-    upload.single("image"),
+    upload.single("image"),requireAdmin,
     async (req, res) => {
+
         try {
-            if (!req.file) {
-                return res.status(400).send("Please select an image");
-            }
 
             const {
                 name,
@@ -121,13 +119,18 @@ app.post(
                 quantity_S,
                 quantity_M,
                 quantity_L,
-                category,
-                quantity_XL
+                quantity_XL,
+                category
             } = req.body;
-            
+
+            const result = await cloudinary.uploader.upload(
+                req.file.path,
+                {
+                    folder: "baladi-style/products"
+                }
+            );
 
             const new_product = new Product({
-                Image: req.file.filename,
                 name,
                 description,
                 price,
@@ -136,18 +139,25 @@ app.post(
                 quantity_M,
                 quantity_L,
                 quantity_XL,
-                date: new Date(),
-                category:category
+                category,
+
+                Image: result.secure_url,
+
+                date: new Date()
             });
 
             await new_product.save();
 
             res.redirect("/dashboard/products");
 
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Server error");
+        } catch (error) {
+
+            console.error(error);
+
+            res.status(500).send("Error uploading product");
+
         }
+
     }
 );
 app.post("/order", async (req, res) => {
