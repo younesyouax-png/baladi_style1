@@ -41,13 +41,28 @@
     <!-- CSS -->
 
     <link rel="stylesheet" href="/all_products.css">
+    
 
 </head>
 
 
 <body>
+   <% if (message === true) { %>
 
+<div class="order-toast" id="orderToast">
 
+    <div class="toast-check">✓</div>
+
+    <div class="toast-text">
+        <strong>ORDER PLACED</strong>
+        <span>Thank you! We will contact you soon.</span>
+    </div>
+
+    <button onclick="closeOrderToast()">×</button>
+
+</div>
+
+<% } %>
     <!-- =========================================
          NAVBAR
     ========================================== -->
@@ -82,7 +97,7 @@
 
             <li>
                 <a href="/#products">
-                    Products
+                    New Products
                 </a>
             </li>
 
@@ -105,17 +120,8 @@
 
         <div class="nav_icons">
 
-            <span class="material-symbols-outlined">
-                search
-            </span>
-
-            <a href="#">
-
-                <span class="material-symbols-outlined">
-                    add_shopping_cart
-                </span>
-
-            </a>
+           
+            <a id="menu" ><img id="close" src="/menu.svg" alt=""></a>
 
         </div>
 
@@ -127,6 +133,42 @@
     <!-- =========================================
          PAGE HERO
     ========================================== -->
+    <div id="hamburger">
+        <ul class="ham_links">
+
+            <li>
+                <a href="/#hero">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="/#products">
+                    New Products
+                </a>
+            </li>
+            <li>
+                <a href="/products">
+                   All products
+                </a>
+            </li>
+
+            <li>
+                <a href="/#feedbacks">
+                    Feedbacks
+                </a>
+            </li>
+
+            <li>
+                <a href="/#about">
+                    About
+                </a>
+            </li>
+
+        </ul>
+
+
+    </div>
 
     <header class="products-hero">
 
@@ -274,7 +316,7 @@
                                 '<%= product.name.replace(/'/g, "\\'") %>',
                                 '<%= product.price %>',
                                 '<%= (product.description || '').replace(/'/g, "\\'") %>',
-                                '/uploads/<%= product.Image %>',
+                                '<%= product.Image %>',
                                 '<%= product.category || "" %>',
                                 '<%= product.quantity_S || 0 %>',
                                 '<%= product.quantity_M || 0 %>',
@@ -364,7 +406,7 @@
                                     '<%= product.name.replace(/'/g, "\\'") %>',
                                     '<%= product.price %>',
                                     '<%= (product.description || '').replace(/'/g, "\\'") %>',
-                                    '/uploads/<%= product.Image %>',
+                                    '<%= product.Image %>',
                                     '<%= product.category || "" %>',
                                     '<%= product.quantity_S || 0 %>',
                                     '<%= product.quantity_M || 0 %>',
@@ -582,358 +624,348 @@
                      ORDER FORM
                 ================================== -->
 
-                <form
-                    action="/order"
-                    method="POST"
-                    id="orderForm"
-                >
-
-
-                    <!-- PRODUCT ID -->
-
-                    <input
-                        type="hidden"
-                        name="productId"
-                        id="orderProductId"
-                    >
-
-
-                    <!-- PRODUCT NAME -->
-
-                    <input
-                        type="hidden"
-                        name="productName"
-                        id="orderProductName"
-                    >
-
-
-                    <!-- PRODUCT PRICE -->
-
-                    <input
-                        type="hidden"
-                        name="price"
-                        id="orderProductPrice"
-                    >
-
-
-
-                    <!-- =========================
-                         FULL NAME
-                    ========================== -->
-
-                    <div class="order-field">
-
-
-                        <label>
-
-                            FULL NAME
-
-                        </label>
-
-
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Your full name"
-                            autocomplete="name"
-                            required
-                        >
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         PHONE
-                    ========================== -->
-
-                    <div class="order-field">
-
-
-                        <label>
-
-                            PHONE NUMBER
-
-                        </label>
-
-
-                        <input
-                            type="tel"
-                            name="phone"
-                            placeholder="05 XX XX XX XX"
-                            autocomplete="tel"
-                            required
-                        >
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         ADDRESS
-                    ========================== -->
-
-                    <div class="order-field">
-
-
-                        <label>
-
-                            DELIVERY ADDRESS
-
-                        </label>
-
-
-                        <input
-                            type="text"
-                            name="address"
-                            placeholder="Your delivery address"
-                            autocomplete="street-address"
-                            required
-                        >
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         SIZE
-                    ========================== -->
-
-                    <div class="order-field">
-
-
-                        <label>
-
-                            SIZE
-
-                        </label>
-
-
-
-                        <div class="size-options">
-
-
-                            <!-- S -->
-
-                            <label
-                                class="size-option"
-                                id="sizeS"
-                            >
-
-
-                                <input
-                                    type="radio"
-                                    name="size"
-                                    value="S"
-                                >
-
-
-                                <span>
-
-                                    S
-
-                                </span>
-
-
-                                <small>
-
-                                    AVAILABLE
-
-                                </small>
-
-
-                            </label>
-
-
-
-                            <!-- M -->
-
-                            <label
-                                class="size-option"
-                                id="sizeM"
-                            >
-
-
-                                <input
-                                    type="radio"
-                                    name="size"
-                                    value="M"
-                                >
-
-
-                                <span>
-
-                                    M
-
-                                </span>
-
-
-                                <small>
-
-                                    AVAILABLE
-
-                                </small>
-
-
-                            </label>
-
-
-
-                            <!-- L -->
-
-                            <label
-                                class="size-option"
-                                id="sizeL"
-                            >
-
-
-                                <input
-                                    type="radio"
-                                    name="size"
-                                    value="L"
-                                >
-
-
-                                <span>
-
-                                    L
-
-                                </span>
-
-
-                                <small>
-
-                                    AVAILABLE
-
-                                </small>
-
-
-                            </label>
-
-
-
-                            <!-- XL -->
-
-                            <label
-                                class="size-option"
-                                id="sizeXL"
-                            >
-
-
-                                <input
-                                    type="radio"
-                                    name="size"
-                                    value="XL"
-                                >
-
-
-                                <span>
-
-                                    XL
-
-                                </span>
-
-
-                                <small>
-
-                                    AVAILABLE
-
-                                </small>
-
-
-                            </label>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         QUANTITY
-                    ========================== -->
-
-                    <div class="order-field">
-
-
-                        <label>
-
-                            QUANTITY
-
-                        </label>
-
-
-                        <input
-                            type="number"
-                            name="quantity"
-                            id="orderQuantity"
-                            value="1"
-                            min="1"
-                            max="1"
-                            required
-                        >
-
-
-                    </div>
-
-
-
-                    <!-- =========================
-                         PLACE ORDER
-                    ========================== -->
-
-                    <button
-                        type="submit"
-                        class="place-order"
-                    >
-
-
-                        <span>
-
-                            PLACE ORDER
-
-                        </span>
-
-
-                        <strong>
-
-                            →
-
-                        </strong>
-                        
-
-
-                   
-
-
-
-                    <!-- CASH ON DELIVERY -->
-
-                    <div class="cash-delivery">
-
-                        CASH ON DELIVERY
-
-                    </div>
-
-
-                </form>
-
-
-            </div>
-
-
-        </div>
-
+                <form action="/order" method="POST" id="orderForm">
+
+    <!-- PRODUCT DATA -->
+    <input type="hidden" name="productId" id="orderProductId">
+    <input type="hidden" name="productName" id="orderProductName">
+    <input type="hidden" name="price" id="orderProductPrice">
+
+    <!-- DELIVERY DATA -->
+    <input type="hidden" name="deliveryPrice" id="deliveryPrice">
+    <input type="hidden" name="totalPrice" id="totalPrice">
+
+
+    <!-- FULL NAME -->
+    <div class="order-field">
+        <label>FULL NAME</label>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Your full name"
+            autocomplete="name"
+            required
+        >
+    </div>
+
+
+    <!-- PHONE -->
+    <div class="order-field">
+        <label>PHONE NUMBER</label>
+
+        <input
+            type="tel"
+            name="phone"
+            placeholder="05 XX XX XX XX"
+            autocomplete="tel"
+            required
+        >
+    </div>
+
+
+    <!-- WILAYA -->
+    <div class="order-field">
+
+        <label>WILAYA</label>
+
+        <select
+            name="wilaya"
+            id="wilaya"
+            required
+        >
+
+            <option value="" disabled selected>
+                Select your wilaya
+            </option>
+
+            <option value="Adrar">01 - Adrar</option>
+            <option value="Chlef">02 - Chlef</option>
+            <option value="Laghouat">03 - Laghouat</option>
+            <option value="Oum El Bouaghi">04 - Oum El Bouaghi</option>
+            <option value="Batna">05 - Batna</option>
+            <option value="Béjaïa">06 - Béjaïa</option>
+            <option value="Biskra">07 - Biskra</option>
+            <option value="Béchar">08 - Béchar</option>
+            <option value="Blida">09 - Blida</option>
+            <option value="Bouira">10 - Bouira</option>
+            <option value="Tamanrasset">11 - Tamanrasset</option>
+            <option value="Tébessa">12 - Tébessa</option>
+            <option value="Tlemcen">13 - Tlemcen</option>
+            <option value="Tiaret">14 - Tiaret</option>
+            <option value="Tizi Ouzou">15 - Tizi Ouzou</option>
+            <option value="Alger">16 - Alger</option>
+            <option value="Djelfa">17 - Djelfa</option>
+            <option value="Jijel">18 - Jijel</option>
+            <option value="Sétif">19 - Sétif</option>
+            <option value="Saïda">20 - Saïda</option>
+            <option value="Skikda">21 - Skikda</option>
+            <option value="Sidi Bel Abbès">22 - Sidi Bel Abbès</option>
+            <option value="Annaba">23 - Annaba</option>
+            <option value="Guelma">24 - Guelma</option>
+            <option value="Constantine">25 - Constantine</option>
+            <option value="Médéa">26 - Médéa</option>
+            <option value="Mostaganem">27 - Mostaganem</option>
+            <option value="M'Sila">28 - M'Sila</option>
+            <option value="Mascara">29 - Mascara</option>
+            <option value="Ouargla">30 - Ouargla</option>
+            <option value="Oran">31 - Oran</option>
+            <option value="El Bayadh">32 - El Bayadh</option>
+            <option value="Illizi">33 - Illizi</option>
+            <option value="Bordj Bou Arreridj">34 - Bordj Bou Arreridj</option>
+            <option value="Boumerdès">35 - Boumerdès</option>
+            <option value="El Tarf">36 - El Tarf</option>
+            <option value="Tindouf">37 - Tindouf</option>
+            <option value="Tissemsilt">38 - Tissemsilt</option>
+            <option value="El Oued">39 - El Oued</option>
+            <option value="Khenchela">40 - Khenchela</option>
+            <option value="Souk Ahras">41 - Souk Ahras</option>
+            <option value="Tipaza">42 - Tipaza</option>
+            <option value="Mila">43 - Mila</option>
+            <option value="Aïn Defla">44 - Aïn Defla</option>
+            <option value="Naâma">45 - Naâma</option>
+            <option value="Aïn Témouchent">46 - Aïn Témouchent</option>
+            <option value="Ghardaïa">47 - Ghardaïa</option>
+            <option value="Relizane">48 - Relizane</option>
+            <option value="Timimoun">49 - Timimoun</option>
+            <option value="Ouled Djellal">51 - Ouled Djellal</option>
+            <option value="Beni Abbes">52 - Beni Abbes</option>
+            <option value="In Salah">53 - In Salah</option>
+            <option value="Touggourt">55 - Touggourt</option>
+            <option value="El M'Ghair">57 - El M'Ghair</option>
+            <option value="El Meniaa">58 - El Meniaa</option>
+
+        </select>
 
     </div>
 
 
 
+    <!-- COMMUNE -->
+    <div class="order-field">
+        <label>COMMUNE(Baladia)</label>
+
+        <input
+            type="text"
+            name="commune"
+            id="commune"
+            placeholder="Your commune"
+            required
+        >
+    </div>
+
+
+    <!-- DELIVERY METHOD -->
+    <div class="order-field">
+
+        <label>DELIVERY METHOD</label>
+
+        <div class="delivery-options">
+
+            <label class="delivery-option">
+
+                <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="Home Delivery"
+                    id="homeDelivery"
+                    required
+                >
+
+                <div>
+                    <strong>HOME DELIVERY</strong>
+                    <small>Delivery to your address</small>
+                </div>
+
+            </label>
+
+
+            <label class="delivery-option">
+
+                <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="Stop Desk"
+                    id="stopDesk"
+                >
+
+                <div>
+                    <strong>STOP DESK</strong>
+                    <small>Pick up from delivery office</small>
+                </div>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADDRESS -->
+    <div
+        class="order-field"
+        id="addressField"
+        style="display: none;"
+    >
+
+        <label>DELIVERY ADDRESS</label>
+
+        <input
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Your full delivery address"
+            autocomplete="street-address"
+        >
+
+    </div>
+
+
+    <!-- SIZE -->
+    <div class="order-field">
+
+        <label>SIZE</label>
+
+        <div class="size-options">
+
+            <label class="size-option" id="sizeS">
+
+                <input
+                    type="radio"
+                    name="size"
+                    value="S"
+                    required
+                >
+
+                <span>S</span>
+                <small>AVAILABLE</small>
+
+            </label>
+
+
+            <label class="size-option" id="sizeM">
+
+                <input
+                    type="radio"
+                    name="size"
+                    value="M"
+                >
+
+                <span>M</span>
+                <small>AVAILABLE</small>
+
+            </label>
+
+
+            <label class="size-option" id="sizeL">
+
+                <input
+                    type="radio"
+                    name="size"
+                    value="L"
+                >
+
+                <span>L</span>
+                <small>AVAILABLE</small>
+
+            </label>
+
+
+            <label class="size-option" id="sizeXL">
+
+                <input
+                    type="radio"
+                    name="size"
+                    value="XL"
+                >
+
+                <span>XL</span>
+                <small>AVAILABLE</small>
+
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUANTITY -->
+    <div class="order-field">
+
+        <label>QUANTITY</label>
+
+        <input
+            type="number"
+            name="quantity"
+            id="orderQuantity"
+            value="1"
+            min="1"
+            max="1"
+            required
+        >
+
+    </div>
+
+
+    <!-- PRICE SUMMARY -->
+    <div class="price-summary">
+
+        <div class="price-row">
+
+            <span>PRODUCT</span>
+
+            <strong>
+                <span id="productTotal">0</span> DA
+            </strong>
+
+        </div>
+
+
+        <div class="price-row">
+
+            <span>DELIVERY</span>
+
+            <strong>
+                <span id="deliveryTotal">0</span> DA
+            </strong>
+
+        </div>
+
+
+        <div class="price-row total-row">
+
+            <span>TOTAL</span>
+
+            <strong>
+                <span id="orderTotal">0</span> DA
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- PLACE ORDER -->
+    <button
+        type="submit"
+        class="place-order"
+    >
+
+        <span>PLACE ORDER</span>
+
+        <strong>→</strong>
+
+    </button>
+     <div style="font-size: 20px;color: #fafafa;" class="cash-delivery">
+        delivery with <span style="color: rgb(171, 14, 14);">golivry</span>
+    </div>
+
+
+    <div class="cash-delivery">
+        CASH ON DELIVERY
+    </div>
+
+</form>
     <!-- =========================================
          JAVASCRIPT
     ========================================== -->
@@ -1065,7 +1097,7 @@
             name,
             price,
             description,
-            image,
+            Image,
             category,
             quantityS,
             quantityM,
@@ -1080,7 +1112,7 @@
 
             document.getElementById(
                 "modalProductImage"
-            ).src = image;
+            ).src = Image;
 
 
             document.getElementById(
@@ -1374,6 +1406,321 @@
 
             }
         );
+        const menu = document.getElementById("menu");
+    const hamburger = document.getElementById("hamburger");
+    const image =document.getElementById("close")
+    let number =0
+
+    menu.addEventListener("click", function (e) {
+       
+
+        hamburger.classList.toggle("active");
+        if(number===0){
+            image.src='close.svg'
+            number+=1
+        }
+        else{
+            image.src='menu.svg'
+            number=0
+        }
+
+    });
+    const deliveryPrices = {
+
+    "Adrar": { home: 1500, stopDesk: 800 },
+    "Chlef": { home: 850, stopDesk: 450 },
+    "Laghouat": { home: 950, stopDesk: 550 },
+    "Oum El Bouaghi": { home: 850, stopDesk: 450 },
+    "Batna": { home: 850, stopDesk: 450 },
+    "Béjaïa": { home: 850, stopDesk: 450 },
+    "Biskra": { home: 900, stopDesk: 550 },
+    "Béchar": { home: 1200, stopDesk: 700 },
+    "Blida": { home: 700, stopDesk: 400 },
+    "Bouira": { home: 850, stopDesk: 450 },
+    "Tamanrasset": { home: 1800, stopDesk: 950 },
+    "Tébessa": { home: 900, stopDesk: 500 },
+    "Tlemcen": { home: 900, stopDesk: 450 },
+    "Tiaret": { home: 850, stopDesk: 450 },
+    "Tizi Ouzou": { home: 800, stopDesk: 450 },
+    "Alger": { home: 500, stopDesk: 300 },
+    "Djelfa": { home: 950, stopDesk: 500 },
+    "Jijel": { home: 850, stopDesk: 450 },
+    "Sétif": { home: 850, stopDesk: 450 },
+    "Saïda": { home: 850, stopDesk: 500 },
+    "Skikda": { home: 850, stopDesk: 450 },
+    "Sidi Bel Abbès": { home: 850, stopDesk: 500 },
+    "Annaba": { home: 850, stopDesk: 450 },
+    "Guelma": { home: 900, stopDesk: 500 },
+    "Constantine": { home: 800, stopDesk: 450 },
+    "Médéa": { home: 800, stopDesk: 450 },
+    "Mostaganem": { home: 850, stopDesk: 450 },
+    "M'Sila": { home: 900, stopDesk: 500 },
+    "Mascara": { home: 850, stopDesk: 500 },
+    "Ouargla": { home: 1000, stopDesk: 650 },
+    "Oran": { home: 850, stopDesk: 450 },
+    "El Bayadh": { home: 1050, stopDesk: 700 },
+    "Illizi": { home: 2100, stopDesk: 1200 },
+    "Bordj Bou Arreridj": { home: 850, stopDesk: 500 },
+    "Boumerdès": { home: 700, stopDesk: 400 },
+    "El Tarf": { home: 850, stopDesk: 500 },
+    "Tindouf": { home: 1700, stopDesk: 800 },
+    "Tissemsilt": { home: 850, stopDesk: 500 },
+    "El Oued": { home: 1050, stopDesk: 700 },
+    "Khenchela": { home: 850, stopDesk: 500 },
+    "Souk Ahras": { home: 900, stopDesk: 500 },
+    "Tipaza": { home: 700, stopDesk: 400 },
+    "Mila": { home: 850, stopDesk: 500 },
+    "Aïn Defla": { home: 850, stopDesk: 500 },
+    "Naâma": { home: 1200, stopDesk: 700 },
+    "Aïn Témouchent": { home: 850, stopDesk: 500 },
+    "Ghardaïa": { home: 950, stopDesk: 550 },
+    "Relizane": { home: 850, stopDesk: 500 },
+    "Timimoun": { home: 1600, stopDesk: 850 },
+    "Ouled Djellal": { home: 950, stopDesk: 550 },
+    "Beni Abbes": { home: 1300, stopDesk: 650 },
+    "In Salah": { home: 1900, stopDesk: 1400 },
+    "Touggourt": { home: 1000, stopDesk: 600 },
+    "El M'Ghair": { home: 1200, stopDesk: 0 },
+    "El Meniaa": { home: 1100, stopDesk: 700 }
+
+};
+
+
+// ELEMENTS
+
+const wilayaInput =
+    document.getElementById("wilaya");
+
+const quantityInput =
+    document.getElementById("orderQuantity");
+
+const addressField =
+    document.getElementById("addressField");
+
+const addressInput =
+    document.getElementById("address");
+
+const productPriceInput =
+    document.getElementById("orderProductPrice");
+
+const deliveryPriceInput =
+    document.getElementById("deliveryPrice");
+
+const totalPriceInput =
+    document.getElementById("totalPrice");
+
+const productTotal =
+    document.getElementById("productTotal");
+
+const deliveryTotal =
+    document.getElementById("deliveryTotal");
+
+const orderTotal =
+    document.getElementById("orderTotal");
+
+
+// NORMALIZE WILAYA
+
+function normalizeWilaya(name) {
+
+    return name
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+}
+
+
+// FIND WILAYA
+
+function getWilayaData(wilaya) {
+
+    const normalized =
+        normalizeWilaya(wilaya);
+
+    for (const key in deliveryPrices) {
+
+        if (
+            normalizeWilaya(key) === normalized
+        ) {
+            return deliveryPrices[key];
+        }
+
+    }
+
+    return null;
+
+}
+
+
+// GET DELIVERY PRICE
+
+function getDeliveryPrice() {
+
+    const wilaya =
+        wilayaInput.value;
+
+    const selectedMethod =
+        document.querySelector(
+            'input[name="deliveryMethod"]:checked'
+        );
+
+    if (!wilaya || !selectedMethod) {
+        return 0;
+    }
+
+    const data =
+        getWilayaData(wilaya);
+
+    if (!data) {
+        return 0;
+    }
+
+    if (
+        selectedMethod.value === "Home Delivery"
+    ) {
+        return data.home;
+    }
+
+    if (
+        selectedMethod.value === "Stop Desk"
+    ) {
+        return data.stopDesk;
+    }
+
+    return 0;
+
+}
+
+
+// UPDATE TOTAL
+
+function updateTotal() {
+
+    const price =
+        parseFloat(productPriceInput.value) || 0;
+
+    const quantity =
+        parseInt(quantityInput.value) || 1;
+
+    const delivery =
+        getDeliveryPrice();
+
+    const subtotal =
+        price * quantity;
+
+    const total =
+        subtotal + delivery;
+
+
+    productTotal.textContent =
+        subtotal.toLocaleString("fr-DZ");
+
+    deliveryTotal.textContent =
+        delivery.toLocaleString("fr-DZ");
+
+    orderTotal.textContent =
+        total.toLocaleString("fr-DZ");
+
+
+    deliveryPriceInput.value =
+        delivery;
+
+    totalPriceInput.value =
+        total;
+
+}
+
+
+// DELIVERY METHOD
+
+document
+    .querySelectorAll(
+        'input[name="deliveryMethod"]'
+    )
+    .forEach(function (radio) {
+
+        radio.addEventListener(
+            "change",
+            function () {
+
+                if (
+                    this.value === "Home Delivery"
+                ) {
+
+                    addressField.style.display =
+                        "block";
+
+                    addressInput.required =
+                        true;
+
+                } else {
+
+                    addressField.style.display =
+                        "none";
+
+                    addressInput.required =
+                        false;
+
+                    addressInput.value = "";
+
+                }
+
+                updateTotal();
+
+            }
+        );
+
+    });
+
+
+// WILAYA
+
+wilayaInput.addEventListener(
+    "input",
+    updateTotal
+);
+
+
+// QUANTITY
+
+quantityInput.addEventListener(
+    "input",
+    updateTotal
+);
+
+
+// INITIAL UPDATE
+
+updateTotal();
+
+function closeOrderToast() {
+    const toast = document.getElementById("orderToast");
+
+    if (toast) {
+        toast.style.animation = "toastOut 0.3s ease forwards";
+
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }
+}
+
+setTimeout(() => {
+
+    const toast = document.getElementById("orderToast");
+
+    if (toast) {
+        toast.style.animation = "toastOut 0.3s ease forwards";
+
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }
+
+}, 5000);
+
 
 
     </script>

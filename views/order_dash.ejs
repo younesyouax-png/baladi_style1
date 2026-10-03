@@ -68,164 +68,198 @@
         <!-- =====================================
              ORDERS LIST
         ====================================== -->
+<% if (orders && orders.length > 0) { %>
 
-        <% if (orders && orders.length > 0) { %>
+    <div class="orders-list">
 
+        <% orders.forEach((order, index) => { %>
 
-            <div class="orders-list">
+            <div class="order">
 
+                <!-- ORDER HEADER -->
+                <div class="order-header">
 
-                <% orders.forEach((order, index) => { %>
+                    <div class="order-number">
+                        #<%= String(index + 1).padStart(2, '0') %>
+                    </div>
 
+                    <div class="order-date">
+                        <%= new Date(order.date).toLocaleString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        }) %>
+                    </div>
 
-                    <div class="order">
+                    
 
+                </div>
 
-                        <!-- ORDER NUMBER -->
 
-                        <div class="order-number">
+                <!-- ORDER INFORMATION -->
+                <div class="order-info">
 
-                            #<%= String(index + 1).padStart(2, '0') %>
-
-                        </div>
-
-
-
-                        <!-- ORDER INFORMATION -->
-
-                        <div class="order-info">
-
-
-                            <!-- PRODUCT -->
-
-                            <div class="order-item">
-
-                                <span>
-                                    PRODUCT
-                                </span>
-
-                                <strong>
-                                    <%= order.productName %>
-                                </strong>
-
-                            </div>
-
-
-
-                            <!-- CUSTOMER -->
-
-                            <div class="order-item">
-
-                                <span>
-                                    CUSTOMER
-                                </span>
-
-                                <strong>
-                                    <%= order.name %>
-                                </strong>
-
-                            </div>
-
-
-
-                            <!-- PHONE -->
-
-                            <div class="order-item">
-
-                                <span>
-                                    PHONE
-                                </span>
-
-                                <strong>
-                                    <%= order.phone %>
-                                </strong>
-
-                            </div>
-
-
-
-                            <!-- SIZE -->
-
-                            <div class="order-item">
-
-                                <span>
-                                    SIZE
-                                </span>
-
-                                <strong class="size-value">
-                                    <%= order.size %>
-                                </strong>
-
-                            </div>
-
-
-
-                            <!-- QUANTITY -->
-
-                            <div class="order-item">
-
-                                <span>
-                                    QTY
-                                </span>
-
-                                <strong>
-                                    <%= order.quantity %>
-                                </strong>
-
-                            </div>
-
-
-
-                            <!-- ADDRESS -->
-
-                            <div class="order-item address-item">
-
-                                <span>
-                                    ADDRESS
-                                </span>
-
-                                <strong>
-                                    <%= order.address %>
-                                </strong>
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <!-- DELETE -->
-
-                        <form
-                            class="delete-form"
-                            action="/dashboard/delete_order/<%= order._id %>"
-                            method="POST"
-                            onsubmit="return confirm('Are you sure you want to delete this order?');"
-                        >
-
-                            <button
-                                type="submit"
-                                class="delete-order"
-                            >
-
-                                DELETE
-
-                            </button>
-
-                        </form>
-
-
+                    <!-- PRODUCT -->
+                    <div class="order-item product-item">
+                        <span>PRODUCT</span>
+                        <strong><%= order.productName %></strong>
                     </div>
 
 
-                <% }) %>
+                    <!-- CUSTOMER -->
+                    <div class="order-item">
+                        <span>CUSTOMER</span>
+                        <strong><%= order.name %></strong>
+                    </div>
 
+
+                    <!-- PHONE -->
+                    <div class="order-item">
+                        <span>PHONE</span>
+                        <strong><%= order.phone %></strong>
+                    </div>
+
+
+                    <!-- SIZE -->
+                    <div class="order-item">
+                        <span>SIZE</span>
+                        <strong class="size-value">
+                            <%= order.size %>
+                        </strong>
+                    </div>
+
+
+                    <!-- QUANTITY -->
+                    <div class="order-item">
+                        <span>QUANTITY</span>
+                        <strong>
+                            <%= order.quantity %>
+                        </strong>
+                    </div>
+
+
+                    <!-- PRICE -->
+                    <div class="order-item">
+                        <span>PRODUCT PRICE</span>
+                        <strong>
+                            <%= Number(order.price || 0).toLocaleString('fr-DZ') %> DA
+                        </strong>
+                    </div>
+
+
+                    <!-- WILAYA -->
+                    <div class="order-item">
+                        <span>WILAYA</span>
+                        <strong>
+                            <%= order.wilaya || '—' %>
+                        </strong>
+                    </div>
+
+
+                    <!-- COMMUNE -->
+                    <div class="order-item">
+                        <span>COMMUNE</span>
+                        <strong>
+                            <%= order.commune || '—' %>
+                        </strong>
+                    </div>
+
+
+                    <!-- DELIVERY METHOD -->
+                    <div class="order-item">
+                        <span>DELIVERY</span>
+                        <strong>
+                            <%= order.deliveryMethod || '—' %>
+                        </strong>
+                    </div>
+
+
+                    <!-- DELIVERY PRICE -->
+                    <div class="order-item">
+                        <span>DELIVERY PRICE</span>
+                        <strong>
+                            <%= Number(order.deliveryPrice || 0).toLocaleString('fr-DZ') %> DA
+                        </strong>
+                    </div>
+
+
+                    <!-- ADDRESS -->
+                    <div class="order-item address-item">
+                        <span>ADDRESS</span>
+                        <strong>
+                            <%= order.address || 'Stop Desk' %>
+                        </strong>
+                    </div>
+
+
+                    <!-- TOTAL -->
+                    <div class="order-item total-item">
+                        <span>TOTAL</span>
+                        <strong>
+                            <%= Number(order.totalPrice || 0).toLocaleString('fr-DZ') %> DA
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+                <div class="order-actions">
+
+                    <!-- DELETE -->
+                    <form
+                        class="delete-form"
+                        action="/dashboard/delete_order/<%= order._id %>"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this order?');"
+                    >
+                        <button
+                            type="submit"
+                            class="delete-order"
+                        >
+                            DELETE
+                        </button>
+                    </form>
+
+
+                    <!-- RETURN ORDER -->
+                    <form
+                        class="return-form"
+                        action="/dashboard/return_order/<%= order._id %>"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to return the quantity to stock?');"
+                    >
+
+                        <label class="return-radio">
+
+                            <input
+                                type="checkbox"
+                                <%= order.returned ? "checked disabled" : "" %>
+                                onchange="this.form.submit()"
+                            >
+
+                            <span class="radio-circle"></span>
+
+                            <span class="return-text">
+                                <%= order.returned ? 'RETURNED' : 'RETURN' %>
+                            </span>
+
+                        </label>
+
+                    </form>
+
+                </div>
 
             </div>
 
+        <% }) %>
 
-        <% } else { %>
+    </div>
+
+<% } else { %>
+
 
 
             <!-- =================================

@@ -10,11 +10,14 @@
     <!-- ================= FONTS ================= -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- ================= ICONS ================= -->
-     
 
     <link
         rel="stylesheet"
@@ -29,9 +32,7 @@
 
 </head>
 
-
 <body>
-
 
     <!-- =====================================================
                          NAVBAR
@@ -67,7 +68,13 @@
 
             <li>
                 <a href="#products">
-                    Products
+                    New Products
+                </a>
+            </li>
+
+            <li>
+                <a href="/products">
+                    All products
                 </a>
             </li>
 
@@ -90,31 +97,27 @@
 
         <div class="nav_icons">
 
-            <span class="material-symbols-outlined">
-                search
-            </span>
+           
 
-            <a href="#">
-
-                <span class="material-symbols-outlined">
-                    add_shopping_cart
-                </span>
-
+            <a id="menu">
+                <img
+                    id="close"
+                    src="/menu.svg"
+                    alt=""
+                >
             </a>
-          <a id="menu" ><img id="close" src="/menu.svg" alt=""></a>
-
 
         </div>
 
     </nav>
-    
-
 
 
     <!-- =====================================================
-                           HERO
+                         MOBILE MENU
     ====================================================== -->
-<div id="hamburger">
+
+    <div id="hamburger">
+
         <ul class="ham_links">
 
             <li>
@@ -125,7 +128,13 @@
 
             <li>
                 <a href="#products">
-                    Products
+                    New Products
+                </a>
+            </li>
+
+            <li>
+                <a href="/products">
+                    All products
                 </a>
             </li>
 
@@ -143,9 +152,14 @@
 
         </ul>
 
-
     </div>
+
+
     <main>
+
+        <!-- =====================================================
+                              HERO
+        ====================================================== -->
 
         <section
             class="hero"
@@ -157,13 +171,7 @@
 
             <div class="hero_content">
 
-                <p class="hero_small">
-                    BALADI STYLE
-                </p>
-
-
                 <h1>
-
                     OWN<br>
 
                     <span>
@@ -210,7 +218,6 @@
         </section>
 
 
-
         <!-- =====================================================
                          PRODUCTS SECTION
         ====================================================== -->
@@ -219,7 +226,6 @@
             class="products-section"
             id="products"
         >
-
 
             <!-- HEADER -->
 
@@ -235,6 +241,7 @@
                     <h1>
 
                         FRESH
+
                         <span>
                             FROM
                         </span>
@@ -264,13 +271,11 @@
             </div>
 
 
-
             <!-- =================================================
                             PRODUCTS SLIDER
             ================================================== -->
 
             <div class="products-slider">
-
 
                 <!-- PREVIOUS -->
 
@@ -287,24 +292,23 @@
                 </button>
 
 
-
                 <!-- PRODUCTS -->
 
                 <div class="products-grid">
 
-
                     <% products.forEach((product, index) => { %>
 
-
                         <article class="product-card">
-
 
                             <!-- ================= IMAGE ================= -->
 
                             <div class="product-image">
 
-
-                                <img src="<%= product.Image %>" alt="<%= product.name %>" loading="lazy">
+                                <img
+                                    src="<%= product.Image %>"
+                                    alt="<%= product.name %>"
+                                    loading="lazy"
+                                >
 
 
                                 <!-- NUMBER -->
@@ -329,15 +333,25 @@
                                     class="quick-view"
                                     type="button"
                                     aria-label="Quick view"
+
                                     data-id="<%= product._id %>"
+
                                     data-name="<%= product.name %>"
+
                                     data-price="<%= product.price %>"
+
                                     data-description="<%= product.description %>"
-                                    data-image="/uploads/<%= product.Image %>"
+
+                                    data-image="<%= product.Image %>"
+
                                     data-category="<%= product.category || '' %>"
+
                                     data-s="<%= product.quantity_S || 0 %>"
+
                                     data-m="<%= product.quantity_M || 0 %>"
+
                                     data-l="<%= product.quantity_L || 0 %>"
+
                                     data-xl="<%= product.quantity_XL || 0 %>"
                                 >
 
@@ -348,11 +362,9 @@
                             </div>
 
 
-
                             <!-- ================= INFO ================= -->
 
                             <div class="product-info">
-
 
                                 <!-- NAME + PRICE -->
 
@@ -372,7 +384,6 @@
                                 </div>
 
 
-
                                 <!-- DESCRIPTION -->
 
                                 <p>
@@ -382,11 +393,9 @@
                                 </p>
 
 
-
                                 <!-- BOTTOM -->
 
                                 <div class="product-bottom">
-
 
                                     <span class="available">
 
@@ -395,21 +404,30 @@
                                     </span>
 
 
-
                                     <!-- VIEW PRODUCT -->
 
                                     <button
                                         type="button"
                                         class="product-view"
+
                                         data-id="<%= product._id %>"
+
                                         data-name="<%= product.name %>"
+
                                         data-price="<%= product.price %>"
+
                                         data-description="<%= product.description %>"
-                                        data-image="/uploads/<%= product.Image %>"
+
+                                        data-image="<%= product.Image %>"
+
                                         data-category="<%= product.category || '' %>"
+
                                         data-s="<%= product.quantity_S || 0 %>"
+
                                         data-m="<%= product.quantity_M || 0 %>"
+
                                         data-l="<%= product.quantity_L || 0 %>"
+
                                         data-xl="<%= product.quantity_XL || 0 %>"
                                     >
 
@@ -429,12 +447,9 @@
 
                         </article>
 
-
                     <% }) %>
 
-
                 </div>
-
 
 
                 <!-- NEXT -->
@@ -456,194 +471,309 @@
         </section>
 
 
-
         <!-- =====================================================
-                           FEEDBACKS
+                         FEEDBACKS
         ====================================================== -->
 
-        <section class="feedbacks" id="feedbacks">
-
-    <div class="feedbacks-header">
-
-        <span class="feedbacks-label">
-            CUSTOMER FEEDBACK
-        </span>
-
-        <h2>
-            WHAT THEY<br>
-            <span>SAY.</span>
-        </h2>
-
-        <p>
-            Real words from people who chose
-            Baladi Style.
-        </p>
-
-    </div>
-
-
-    <div class="feedbacks-container">
-
-        <!-- FEEDBACK 1 -->
-
-        <div class="feedback-card">
-
-            <div class="feedback-top">
-
-                <div class="feedback-stars">
-                    ★★★★★
-                </div>
-
-                <span class="feedback-number">
-                    01
-                </span>
-
-            </div>
-
-            <p style="font-family: Rubik,sans-serif;" class="feedback-text">
-                النوعية تع القماش خير ملي لي توقعت و لحقتني كيما التصويرة ،والله غيلر ماشاء الله
-            </p>
-
-            <div class="feedback-user">
-                <span class="feedback-avatar">A</span>
-
-                <div>
-                    <strong>Ahmed</strong>
-                    <small>Verified Customer</small>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- FEEDBACK 2 -->
-
-        <div class="feedback-card">
-
-            <div class="feedback-top">
-
-                <div class="feedback-stars">
-                    ★★★★★
-                </div>
-
-                <span class="feedback-number">
-                    02
-                </span>
-
-            </div>
-
-            <p style="font-family: Rubik,sans-serif;" class="feedback-text">
-                "ستايل شباب بزاف وجودة هايلة. الاونسومبل يبان حطة في الواقع، وعجبني بزاف! بصح ما ندمتش عليه."
-
-            </p>
-
-            <div class="feedback-user">
-                <span class="feedback-avatar">S</span>
-
-                <div>
-                    <strong>Samir</strong>
-                    <small>Verified Customer</small>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- FEEDBACK 3 -->
-
-        <div class="feedback-card">
-
-            <div class="feedback-top">
-
-                <div class="feedback-stars">
-                    ★★★★★
-                </div>
-
-                <span class="feedback-number">
-                    03
-                </span>
-
-            </div>
-
-            <p style="font-family: Rubik,sans-serif;" class="feedback-text">
-                شحال من خطرة نشري عليكم و نفس المعاملة الطيبة و الاحترافية ، شكرا
-            </p>
-
-            <div class="feedback-user">
-                <span class="feedback-avatar">Y</span>
-
-                <div>
-                    <strong>Yanis</strong>
-                    <small>Verified Customer</small>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-        <!-- =====================================================
-                             ABOUT
-        ====================================================== -->
-
-        <section class="about" id="about">
-
-    <div class="about-content">
-
-        <span class="about-label">ABOUT BALADI STYLE</span>
-
-        <h2>
-            WEAR YOUR<br>
-            <span>OWN STYLE.</span>
-        </h2>
-
-        <p>
-            Baladi Style is more than a clothing store.
-            It is a space for those who see fashion as a way
-            to express who they are.
-        </p>
-
-        <p>
-            We bring together carefully selected streetwear pieces,
-            bags and accessories with a focus on style, quality
-            and individuality.
-        </p>
-
-        <div class="about-line"></div>
-
-        <span class="about-tagline">
-            STYLE ISN'T FOLLOWED. IT'S CREATED.
-        </span>
-
-        <a
-            href="https://www.instagram.com/baladi.style/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="about-instagram"
+        <section
+            class="feedbacks"
+            id="feedbacks"
         >
-            <span class="instagram-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                    <circle cx="12" cy="12" r="4.2"></circle>
-                    <circle cx="17.5" cy="6.7" r="1"></circle>
-                </svg>
-            </span>
 
-            <span>@baladi.style</span>
+            <div class="feedbacks-header">
 
-            <span class="instagram-arrow">↗</span>
-        </a>
+                <span class="feedbacks-label">
+                    CUSTOMER FEEDBACK
+                </span>
 
-    </div>
 
-</section>
+                <h2>
+
+                    WHAT THEY<br>
+
+                    <span>
+                        SAY.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Real words from people who chose
+                    Baladi Style.
+
+                </p>
+
+            </div>
+
+
+            <div class="feedbacks-container">
+
+                <!-- FEEDBACK 1 -->
+
+                <div class="feedback-card">
+
+                    <div class="feedback-top">
+
+                        <div class="feedback-stars">
+                            ★★★★★
+                        </div>
+
+                        <span class="feedback-number">
+                            01
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        style="font-family: Rubik,sans-serif;"
+                        class="feedback-text"
+                    >
+
+                        النوعية تع القماش خير ملي لي توقعت و لحقتني كيما التصويرة ،والله غير ماشاء الله
+
+                    </p>
+
+
+                    <div class="feedback-user">
+
+                        <span class="feedback-avatar">
+                            A
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Ahmed
+                            </strong>
+
+                            <small>
+                                Verified Customer
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FEEDBACK 2 -->
+
+                <div class="feedback-card">
+
+                    <div class="feedback-top">
+
+                        <div class="feedback-stars">
+                            ★★★★★
+                        </div>
+
+                        <span class="feedback-number">
+                            02
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        style="font-family: Rubik,sans-serif;"
+                        class="feedback-text"
+                    >
+
+                        "ستايل شباب بزاف وجودة هايلة. الاونسومبل يبان حطة في الواقع، وعجبني بزاف! بصح ما ندمتش عليه."
+
+                    </p>
+
+
+                    <div class="feedback-user">
+
+                        <span class="feedback-avatar">
+                            S
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Samir
+                            </strong>
+
+                            <small>
+                                Verified Customer
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FEEDBACK 3 -->
+
+                <div class="feedback-card">
+
+                    <div class="feedback-top">
+
+                        <div class="feedback-stars">
+                            ★★★★★
+                        </div>
+
+                        <span class="feedback-number">
+                            03
+                        </span>
+
+                    </div>
+
+
+                    <p
+                        style="font-family: Rubik,sans-serif;"
+                        class="feedback-text"
+                    >
+
+                        شحال من خطرة نشري عليكم و نفس المعاملة الطيبة و الاحترافية ، شكرا
+
+                    </p>
+
+
+                    <div class="feedback-user">
+
+                        <span class="feedback-avatar">
+                            Y
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Yanis
+                            </strong>
+
+                            <small>
+                                Verified Customer
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+                              ABOUT
+        ====================================================== -->
+
+        <section
+            class="about"
+            id="about"
+        >
+
+            <div class="about-content">
+
+                <span class="about-label">
+                    ABOUT BALADI STYLE
+                </span>
+
+
+                <h2>
+
+                    WEAR YOUR<br>
+
+                    <span>
+                        OWN STYLE.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Baladi Style is more than a clothing store.
+                    It is a space for those who see fashion as a way
+                    to express who they are.
+
+                </p>
+
+
+                <p>
+
+                    We bring together carefully selected streetwear pieces,
+                    bags and accessories with a focus on style, quality
+                    and individuality.
+
+                </p>
+
+
+                <div class="about-line"></div>
+
+
+                <span class="about-tagline">
+
+                    STYLE ISN'T FOLLOWED. IT'S CREATED.
+
+                </span>
+
+
+                <a
+                    href="https://www.instagram.com/baladi.style/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="about-instagram"
+                >
+
+                    <span class="instagram-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <rect
+                                x="3"
+                                y="3"
+                                width="18"
+                                height="18"
+                                rx="5"
+                            ></rect>
+
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="4.2"
+                            ></circle>
+
+                            <circle
+                                cx="17.5"
+                                cy="6.7"
+                                r="1"
+                            ></circle>
+
+                        </svg>
+
+                    </span>
+
+
+                    <span>
+                        @baladi.style
+                    </span>
+
+
+                    <span class="instagram-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
 
     </main>
-
 
 
     <!-- =====================================================
@@ -656,7 +786,6 @@
         aria-hidden="true"
     >
 
-
         <!-- OVERLAY -->
 
         <div
@@ -665,11 +794,9 @@
         ></div>
 
 
-
         <!-- MODAL BOX -->
 
         <div class="product-modal-box">
-
 
             <!-- CLOSE -->
 
@@ -679,11 +806,8 @@
                 id="modalClose"
                 aria-label="Close"
             >
-
                 ×
-
             </button>
-
 
 
             <!-- =================================================
@@ -691,7 +815,6 @@
             ================================================== -->
 
             <div class="modal-product">
-
 
                 <!-- IMAGE -->
 
@@ -706,32 +829,26 @@
                 </div>
 
 
-
                 <!-- INFO -->
 
                 <div class="modal-product-info">
 
-
                     <span
                         class="modal-category"
                         id="modalProductCategory"
-                    >
-                    </span>
+                    ></span>
 
 
-                    <h2 id="modalProductName">
-                    </h2>
+                    <h2 id="modalProductName"></h2>
 
 
                     <div
                         class="modal-price"
                         id="modalProductPrice"
-                    >
-                    </div>
+                    ></div>
 
 
-                    <p id="modalProductDescription">
-                    </p>
+                    <p id="modalProductDescription"></p>
 
 
                     <div
@@ -750,13 +867,11 @@
             </div>
 
 
-
             <!-- =================================================
-                           ORDER FORM
+                              ORDER FORM
             ================================================== -->
 
             <div class="modal-order">
-
 
                 <!-- HEADER -->
 
@@ -773,12 +888,13 @@
 
 
                     <p>
+
                         Fill in your information and we'll contact
                         you to confirm your order.
+
                     </p>
 
                 </div>
-
 
 
                 <!-- FORM -->
@@ -789,8 +905,7 @@
                     id="orderForm"
                 >
 
-
-                    <!-- PRODUCT ID -->
+                    <!-- PRODUCT DATA -->
 
                     <input
                         type="hidden"
@@ -798,25 +913,41 @@
                         id="orderProductId"
                     >
 
-
-                    <!-- PRODUCT NAME -->
-
                     <input
                         type="hidden"
                         name="productName"
                         id="orderProductName"
                     >
 
+                    <input
+                        type="hidden"
+                        name="price"
+                        id="orderProductPrice"
+                    >
 
 
-                    <!-- ================= NAME ================= -->
+                    <!-- DELIVERY DATA -->
+
+                    <input
+                        type="hidden"
+                        name="deliveryPrice"
+                        id="deliveryPrice"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="totalPrice"
+                        id="totalPrice"
+                    >
+
+
+                    <!-- FULL NAME -->
 
                     <div class="order-field">
 
                         <label>
                             FULL NAME
                         </label>
-
 
                         <input
                             type="text"
@@ -829,15 +960,13 @@
                     </div>
 
 
-
-                    <!-- ================= PHONE ================= -->
+                    <!-- PHONE -->
 
                     <div class="order-field">
 
                         <label>
                             PHONE NUMBER
                         </label>
-
 
                         <input
                             type="tel"
@@ -850,29 +979,360 @@
                     </div>
 
 
-
-                    <!-- ================= ADDRESS ================= -->
+                    <!-- WILAYA -->
 
                     <div class="order-field">
 
                         <label>
-                            ADDRESS
+                            WILAYA
                         </label>
 
+                        <select
+                            name="wilaya"
+                            id="wilaya"
+                            required
+                        >
+
+                            <option
+                                value=""
+                                disabled
+                                selected
+                            >
+                                Select your wilaya
+                            </option>
+
+                            <option value="Adrar">
+                                01 - Adrar
+                            </option>
+
+                            <option value="Chlef">
+                                02 - Chlef
+                            </option>
+
+                            <option value="Laghouat">
+                                03 - Laghouat
+                            </option>
+
+                            <option value="Oum El Bouaghi">
+                                04 - Oum El Bouaghi
+                            </option>
+
+                            <option value="Batna">
+                                05 - Batna
+                            </option>
+
+                            <option value="Béjaïa">
+                                06 - Béjaïa
+                            </option>
+
+                            <option value="Biskra">
+                                07 - Biskra
+                            </option>
+
+                            <option value="Béchar">
+                                08 - Béchar
+                            </option>
+
+                            <option value="Blida">
+                                09 - Blida
+                            </option>
+
+                            <option value="Bouira">
+                                10 - Bouira
+                            </option>
+
+                            <option value="Tamanrasset">
+                                11 - Tamanrasset
+                            </option>
+
+                            <option value="Tébessa">
+                                12 - Tébessa
+                            </option>
+
+                            <option value="Tlemcen">
+                                13 - Tlemcen
+                            </option>
+
+                            <option value="Tiaret">
+                                14 - Tiaret
+                            </option>
+
+                            <option value="Tizi Ouzou">
+                                15 - Tizi Ouzou
+                            </option>
+
+                            <option value="Alger">
+                                16 - Alger
+                            </option>
+
+                            <option value="Djelfa">
+                                17 - Djelfa
+                            </option>
+
+                            <option value="Jijel">
+                                18 - Jijel
+                            </option>
+
+                            <option value="Sétif">
+                                19 - Sétif
+                            </option>
+
+                            <option value="Saïda">
+                                20 - Saïda
+                            </option>
+
+                            <option value="Skikda">
+                                21 - Skikda
+                            </option>
+
+                            <option value="Sidi Bel Abbès">
+                                22 - Sidi Bel Abbès
+                            </option>
+
+                            <option value="Annaba">
+                                23 - Annaba
+                            </option>
+
+                            <option value="Guelma">
+                                24 - Guelma
+                            </option>
+
+                            <option value="Constantine">
+                                25 - Constantine
+                            </option>
+
+                            <option value="Médéa">
+                                26 - Médéa
+                            </option>
+
+                            <option value="Mostaganem">
+                                27 - Mostaganem
+                            </option>
+
+                            <option value="M'Sila">
+                                28 - M'Sila
+                            </option>
+
+                            <option value="Mascara">
+                                29 - Mascara
+                            </option>
+
+                            <option value="Ouargla">
+                                30 - Ouargla
+                            </option>
+
+                            <option value="Oran">
+                                31 - Oran
+                            </option>
+
+                            <option value="El Bayadh">
+                                32 - El Bayadh
+                            </option>
+
+                            <option value="Illizi">
+                                33 - Illizi
+                            </option>
+
+                            <option value="Bordj Bou Arreridj">
+                                34 - Bordj Bou Arreridj
+                            </option>
+
+                            <option value="Boumerdès">
+                                35 - Boumerdès
+                            </option>
+
+                            <option value="El Tarf">
+                                36 - El Tarf
+                            </option>
+
+                            <option value="Tindouf">
+                                37 - Tindouf
+                            </option>
+
+                            <option value="Tissemsilt">
+                                38 - Tissemsilt
+                            </option>
+
+                            <option value="El Oued">
+                                39 - El Oued
+                            </option>
+
+                            <option value="Khenchela">
+                                40 - Khenchela
+                            </option>
+
+                            <option value="Souk Ahras">
+                                41 - Souk Ahras
+                            </option>
+
+                            <option value="Tipaza">
+                                42 - Tipaza
+                            </option>
+
+                            <option value="Mila">
+                                43 - Mila
+                            </option>
+
+                            <option value="Aïn Defla">
+                                44 - Aïn Defla
+                            </option>
+
+                            <option value="Naâma">
+                                45 - Naâma
+                            </option>
+
+                            <option value="Aïn Témouchent">
+                                46 - Aïn Témouchent
+                            </option>
+
+                            <option value="Ghardaïa">
+                                47 - Ghardaïa
+                            </option>
+
+                            <option value="Relizane">
+                                48 - Relizane
+                            </option>
+
+                            <option value="Timimoun">
+                                49 - Timimoun
+                            </option>
+
+                            <option value="Ouled Djellal">
+                                51 - Ouled Djellal
+                            </option>
+
+                            <option value="Beni Abbes">
+                                52 - Beni Abbes
+                            </option>
+
+                            <option value="In Salah">
+                                53 - In Salah
+                            </option>
+
+                            <option value="Touggourt">
+                                55 - Touggourt
+                            </option>
+
+                            <option value="El M'Ghair">
+                                57 - El M'Ghair
+                            </option>
+
+                            <option value="El Meniaa">
+                                58 - El Meniaa
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- COMMUNE -->
+
+                    <div class="order-field">
+
+                        <label>
+                            COMMUNE
+                        </label>
 
                         <input
                             type="text"
-                            name="address"
-                            placeholder="Your delivery address"
-                            autocomplete="street-address"
+                            name="commune"
+                            id="commune"
+                            placeholder="Your commune"
                             required
                         >
 
                     </div>
 
 
+                    <!-- DELIVERY METHOD -->
 
-                    <!-- ================= SIZE ================= -->
+                    <div class="order-field">
+
+                        <label>
+                            DELIVERY METHOD
+                        </label>
+
+
+                        <div class="delivery-options">
+
+                            <label class="delivery-option">
+
+                                <input
+                                    type="radio"
+                                    name="deliveryMethod"
+                                    value="Home Delivery"
+                                    id="homeDelivery"
+                                    required
+                                >
+
+                                <div>
+
+                                    <strong>
+                                        HOME DELIVERY
+                                    </strong>
+
+                                    <small>
+                                        Delivery to your address
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+
+                            <label class="delivery-option">
+
+                                <input
+                                    type="radio"
+                                    name="deliveryMethod"
+                                    value="Stop Desk"
+                                    id="stopDesk"
+                                >
+
+                                <div>
+
+                                    <strong>
+                                        STOP DESK
+                                    </strong>
+
+                                    <small>
+                                        Pick up from delivery office
+                                    </small>
+
+                                </div>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div
+                        class="order-field"
+                        id="addressField"
+                        style="display: none;"
+                    >
+
+                        <label>
+                            DELIVERY ADDRESS
+                        </label>
+
+                        <input
+                            type="text"
+                            name="address"
+                            id="address"
+                            placeholder="Your full delivery address"
+                            autocomplete="street-address"
+                        >
+
+                    </div>
+
+
+                    <!-- SIZE -->
 
                     <div class="order-field">
 
@@ -882,9 +1342,6 @@
 
 
                         <div class="size-options">
-
-
-                            <!-- S -->
 
                             <label
                                 class="size-option"
@@ -909,9 +1366,6 @@
                             </label>
 
 
-
-                            <!-- M -->
-
                             <label
                                 class="size-option"
                                 id="sizeM"
@@ -933,9 +1387,6 @@
 
                             </label>
 
-
-
-                            <!-- L -->
 
                             <label
                                 class="size-option"
@@ -959,9 +1410,6 @@
                             </label>
 
 
-
-                            <!-- XL -->
-
                             <label
                                 class="size-option"
                                 id="sizeXL"
@@ -983,21 +1431,18 @@
 
                             </label>
 
-
                         </div>
 
                     </div>
 
 
-
-                    <!-- ================= QUANTITY ================= -->
+                    <!-- QUANTITY -->
 
                     <div class="order-field">
 
                         <label>
                             QUANTITY
                         </label>
-
 
                         <input
                             type="number"
@@ -1012,8 +1457,70 @@
                     </div>
 
 
+                    <!-- PRICE SUMMARY -->
 
-                    <!-- ================= SUBMIT ================= -->
+                    <div class="price-summary">
+
+                        <div class="price-row">
+
+                            <span>
+                                PRODUCT
+                            </span>
+
+                            <strong>
+
+                                <span id="productTotal">
+                                    0
+                                </span>
+
+                                DA
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="price-row">
+
+                            <span>
+                                DELIVERY
+                            </span>
+
+                            <strong>
+
+                                <span id="deliveryTotal">
+                                    0
+                                </span>
+
+                                DA
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="price-row total-row">
+
+                            <span>
+                                TOTAL
+                            </span>
+
+                            <strong>
+
+                                <span id="orderTotal">
+                                    0
+                                </span>
+
+                                DA
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
 
                     <button
                         type="submit"
@@ -1021,26 +1528,20 @@
                         id="placeOrder"
                     >
 
-                        PLACE ORDER
-
                         <span>
-                            →
+                            PLACE ORDER
                         </span>
 
+                        <strong>
+                            →
+                        </strong>
+
                     </button>
-                    
 
-
-
-
-                    <!-- CASH ON DELIVERY -->
 
                     <div class="cash-delivery">
-
                         CASH ON DELIVERY
-
                     </div>
-
 
                 </form>
 
@@ -1051,13 +1552,11 @@
     </div>
 
 
-
     <!-- =====================================================
                          JAVASCRIPT
     ====================================================== -->
 
     <script>
-
 
         /* =====================================================
                            HERO SCROLL
@@ -1074,20 +1573,18 @@
 
             window.addEventListener("scroll", () => {
 
-                const scroll = window.scrollY;
+                const scroll =
+                    window.scrollY;
 
                 const heroHeight =
                     hero.offsetHeight;
-
 
                 let opacity =
                     1 - (scroll / (heroHeight * 0.7));
 
 
                 if (opacity < 0) {
-
                     opacity = 0;
-
                 }
 
 
@@ -1101,7 +1598,6 @@
             });
 
         }
-
 
 
         /* =====================================================
@@ -1123,7 +1619,6 @@
             nextButton &&
             prevButton
         ) {
-
 
             nextButton.addEventListener(
                 "click",
@@ -1163,7 +1658,6 @@
         }
 
 
-
         /* =====================================================
                          MODAL ELEMENTS
         ====================================================== */
@@ -1184,9 +1678,8 @@
             document.getElementById("placeOrder");
 
 
-
         /* =====================================================
-                         STOCK DATA
+                           STOCK DATA
         ====================================================== */
 
         let currentStock = {
@@ -1199,13 +1692,13 @@
         };
 
 
-
         /* =====================================================
-                       OPEN PRODUCT MODAL
+                         OPEN PRODUCT MODAL
         ====================================================== */
 
         function openProductModal(button) {
 
+            /* ================= PRODUCT DATA ================= */
 
             const id =
                 button.dataset.id;
@@ -1214,19 +1707,19 @@
                 button.dataset.name;
 
             const price =
-                button.dataset.price;
+                Number(button.dataset.price) || 0;
 
             const description =
-                button.dataset.description;
+                button.dataset.description || "";
 
             const image =
-                button.dataset.image;
+                button.dataset.image || "";
 
             const category =
-                button.dataset.category;
+                button.dataset.category || "";
 
 
-            /* STOCK */
+            /* ================= STOCK ================= */
 
             currentStock = {
 
@@ -1247,7 +1740,6 @@
 
             /* ================= PRODUCT INFO ================= */
 
-
             document
                 .getElementById("modalProductImage")
                 .src = image;
@@ -1266,13 +1758,12 @@
             document
                 .getElementById("modalProductPrice")
                 .textContent =
-                    price + " DA";
+                    price.toLocaleString("fr-DZ") + " DA";
 
 
             document
                 .getElementById("modalProductDescription")
-                .textContent =
-                    description;
+                .textContent = description;
 
 
             document
@@ -1283,28 +1774,20 @@
                         : "STREETWEAR";
 
 
+            /* =================================================
+                              RESET FORM
+            ================================================== */
 
-            /* ================= FORM ================= */
-
-
-            document
-                .getElementById("orderProductId")
-                .value = id;
-
-
-            document
-                .getElementById("orderProductName")
-                .value = name;
+            const orderForm =
+                document.getElementById("orderForm");
 
 
+            orderForm.reset();
 
-            /* ================= RESET FORM ================= */
 
-
-            document
-                .getElementById("orderForm")
-                .reset();
-
+            /* =================================================
+                         SET PRODUCT DATA
+            ================================================== */
 
             document
                 .getElementById("orderProductId")
@@ -1316,11 +1799,77 @@
                 .value = name;
 
 
-            orderQuantity.value = 1;
+            /*
+                IMPORTANT:
+                Price MUST be set AFTER reset()
+            */
+
+            document
+                .getElementById("orderProductPrice")
+                .value = price;
 
 
+            /* =================================================
+                         RESET DELIVERY DATA
+            ================================================== */
 
-            /* ================= UPDATE SIZES ================= */
+            document
+                .getElementById("deliveryPrice")
+                .value = 0;
+
+
+            document
+                .getElementById("totalPrice")
+                .value = 0;
+
+
+            /* =================================================
+                           RESET DISPLAY
+            ================================================== */
+
+            document
+                .getElementById("productTotal")
+                .textContent = "0";
+
+
+            document
+                .getElementById("deliveryTotal")
+                .textContent = "0";
+
+
+            document
+                .getElementById("orderTotal")
+                .textContent = "0";
+
+
+            /* =================================================
+                           RESET ADDRESS
+            ================================================== */
+
+            addressField.style.display =
+                "none";
+
+            addressInput.required =
+                false;
+
+            addressInput.value =
+                "";
+
+
+            /* =================================================
+                           RESET QUANTITY
+            ================================================== */
+
+            orderQuantity.value =
+                1;
+
+            orderQuantity.min =
+                1;
+
+
+            /* =================================================
+                           UPDATE SIZES
+            ================================================== */
 
             updateSize(
                 "sizeS",
@@ -1343,28 +1892,15 @@
             );
 
 
-
-            /* ================= MODAL ================= */
-
-            modal.classList.add("active");
-
-            modal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-            document.body.classList.add(
-                "modal-open"
-            );
-
-
-            /* ================= FIRST AVAILABLE SIZE ================= */
+            /* =================================================
+                       FIND FIRST AVAILABLE SIZE
+            ================================================== */
 
             const firstAvailable =
-                ["S", "M", "L", "XL"]
-                    .find(size =>
+                ["S", "M", "L", "XL"].find(
+                    size =>
                         currentStock[size] > 0
-                    );
+                );
 
 
             if (firstAvailable) {
@@ -1374,9 +1910,11 @@
                         `input[name="size"][value="${firstAvailable}"]`
                     );
 
+
                 if (radio) {
 
-                    radio.checked = true;
+                    radio.checked =
+                        true;
 
                     updateQuantityLimit(
                         firstAvailable
@@ -1386,16 +1924,49 @@
 
             } else {
 
-                placeOrder.disabled = true;
+                orderQuantity.value =
+                    0;
+
+                orderQuantity.max =
+                    0;
+
+                placeOrder.disabled =
+                    true;
 
             }
+
+
+            /* =================================================
+                           UPDATE TOTAL
+            ================================================== */
+
+            updateTotal();
+
+
+            /* =================================================
+                            OPEN MODAL
+            ================================================== */
+
+            modal.classList.add(
+                "active"
+            );
+
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+
+            document.body.classList.add(
+                "modal-open"
+            );
 
         }
 
 
-
         /* =====================================================
-                       UPDATE SIZE
+                           UPDATE SIZE
         ====================================================== */
 
         function updateSize(
@@ -1403,14 +1974,15 @@
             size
         ) {
 
-
             const container =
                 document.getElementById(elementId);
+
 
             const radio =
                 container.querySelector(
                     'input[type="radio"]'
                 );
+
 
             const status =
                 container.querySelector("small");
@@ -1420,13 +1992,13 @@
                 currentStock[size];
 
 
-
             if (stock <= 0) {
 
+                radio.disabled =
+                    true;
 
-                radio.disabled = true;
-
-                radio.checked = false;
+                radio.checked =
+                    false;
 
                 container.classList.add(
                     "unavailable"
@@ -1436,11 +2008,10 @@
                 status.textContent =
                     "SOLD OUT";
 
-
             } else {
 
-
-                radio.disabled = false;
+                radio.disabled =
+                    false;
 
                 container.classList.remove(
                     "unavailable"
@@ -1455,9 +2026,8 @@
         }
 
 
-
         /* =====================================================
-                     SIZE CHANGE
+                         SIZE CHANGE
         ====================================================== */
 
         document
@@ -1465,7 +2035,6 @@
                 'input[name="size"]'
             )
             .forEach(radio => {
-
 
                 radio.addEventListener(
                     "change",
@@ -1477,6 +2046,8 @@
                                 radio.value
                             );
 
+                            updateTotal();
+
                         }
 
                     }
@@ -1485,13 +2056,11 @@
             });
 
 
-
         /* =====================================================
-                    UPDATE QUANTITY LIMIT
+                      UPDATE QUANTITY LIMIT
         ====================================================== */
 
         function updateQuantityLimit(size) {
-
 
             const max =
                 currentStock[size] || 0;
@@ -1517,18 +2086,19 @@
 
             }
 
+
+            updateTotal();
+
         }
 
 
-
         /* =====================================================
-                     QUANTITY VALIDATION
+                       QUANTITY VALIDATION
         ====================================================== */
 
         orderQuantity.addEventListener(
             "input",
             () => {
-
 
                 const selected =
                     document.querySelector(
@@ -1538,7 +2108,10 @@
 
                 if (!selected) {
 
-                    orderQuantity.value = 1;
+                    orderQuantity.value =
+                        1;
+
+                    updateTotal();
 
                     return;
 
@@ -1554,33 +2127,30 @@
 
 
                 if (value < 1) {
-
                     value = 1;
-
                 }
 
 
                 if (value > max) {
-
                     value = max;
-
                 }
 
 
                 orderQuantity.value =
                     value;
 
+
+                updateTotal();
+
             }
         );
 
 
-
         /* =====================================================
-                       CLOSE MODAL
+                          CLOSE MODAL
         ====================================================== */
 
         function closeProductModal() {
-
 
             modal.classList.remove(
                 "active"
@@ -1600,7 +2170,6 @@
         }
 
 
-
         /* CLOSE BUTTON */
 
         modalClose.addEventListener(
@@ -1609,14 +2178,12 @@
         );
 
 
-
         /* OVERLAY */
 
         modalOverlay.addEventListener(
             "click",
             closeProductModal
         );
-
 
 
         /* ESC */
@@ -1638,9 +2205,8 @@
         );
 
 
-
         /* =====================================================
-                    PRODUCT BUTTONS
+                         PRODUCT BUTTONS
         ====================================================== */
 
         document
@@ -1648,7 +2214,6 @@
                 ".product-view, .quick-view"
             )
             .forEach(button => {
-
 
                 button.addEventListener(
                     "click",
@@ -1664,6 +2229,516 @@
             });
 
 
+        /* =====================================================
+                         DELIVERY PRICES
+        ====================================================== */
+
+        const deliveryPrices = {
+
+            "Adrar": {
+                home: 1500,
+                stopDesk: 800
+            },
+
+            "Chlef": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Laghouat": {
+                home: 950,
+                stopDesk: 550
+            },
+
+            "Oum El Bouaghi": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Batna": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Béjaïa": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Biskra": {
+                home: 900,
+                stopDesk: 550
+            },
+
+            "Béchar": {
+                home: 1200,
+                stopDesk: 700
+            },
+
+            "Blida": {
+                home: 700,
+                stopDesk: 400
+            },
+
+            "Bouira": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Tamanrasset": {
+                home: 1800,
+                stopDesk: 950
+            },
+
+            "Tébessa": {
+                home: 900,
+                stopDesk: 500
+            },
+
+            "Tlemcen": {
+                home: 900,
+                stopDesk: 450
+            },
+
+            "Tiaret": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Tizi Ouzou": {
+                home: 800,
+                stopDesk: 450
+            },
+
+            "Alger": {
+                home: 500,
+                stopDesk: 300
+            },
+
+            "Djelfa": {
+                home: 950,
+                stopDesk: 500
+            },
+
+            "Jijel": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Sétif": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Saïda": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Skikda": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Sidi Bel Abbès": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Annaba": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "Guelma": {
+                home: 900,
+                stopDesk: 500
+            },
+
+            "Constantine": {
+                home: 800,
+                stopDesk: 450
+            },
+
+            "Médéa": {
+                home: 800,
+                stopDesk: 450
+            },
+
+            "Mostaganem": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "M'Sila": {
+                home: 900,
+                stopDesk: 500
+            },
+
+            "Mascara": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Ouargla": {
+                home: 1000,
+                stopDesk: 650
+            },
+
+            "Oran": {
+                home: 850,
+                stopDesk: 450
+            },
+
+            "El Bayadh": {
+                home: 1050,
+                stopDesk: 700
+            },
+
+            "Illizi": {
+                home: 2100,
+                stopDesk: 1200
+            },
+
+            "Bordj Bou Arreridj": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Boumerdès": {
+                home: 700,
+                stopDesk: 400
+            },
+
+            "El Tarf": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Tindouf": {
+                home: 1700,
+                stopDesk: 800
+            },
+
+            "Tissemsilt": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "El Oued": {
+                home: 1050,
+                stopDesk: 700
+            },
+
+            "Khenchela": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Souk Ahras": {
+                home: 900,
+                stopDesk: 500
+            },
+
+            "Tipaza": {
+                home: 700,
+                stopDesk: 400
+            },
+
+            "Mila": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Aïn Defla": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Naâma": {
+                home: 1200,
+                stopDesk: 700
+            },
+
+            "Aïn Témouchent": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Ghardaïa": {
+                home: 950,
+                stopDesk: 550
+            },
+
+            "Relizane": {
+                home: 850,
+                stopDesk: 500
+            },
+
+            "Timimoun": {
+                home: 1600,
+                stopDesk: 850
+            },
+
+            "Ouled Djellal": {
+                home: 950,
+                stopDesk: 550
+            },
+
+            "Beni Abbes": {
+                home: 1300,
+                stopDesk: 650
+            },
+
+            "In Salah": {
+                home: 1900,
+                stopDesk: 1400
+            },
+
+            "Touggourt": {
+                home: 1000,
+                stopDesk: 600
+            },
+
+            "El M'Ghair": {
+                home: 1200,
+                stopDesk: 0
+            },
+
+            "El Meniaa": {
+                home: 1100,
+                stopDesk: 700
+            }
+
+        };
+
+
+        /* =====================================================
+                         FORM ELEMENTS
+        ====================================================== */
+
+        const wilayaInput =
+            document.getElementById("wilaya");
+
+        const quantityInput =
+            document.getElementById("orderQuantity");
+
+        const addressField =
+            document.getElementById("addressField");
+
+        const addressInput =
+            document.getElementById("address");
+
+        const productPriceInput =
+            document.getElementById("orderProductPrice");
+
+        const deliveryPriceInput =
+            document.getElementById("deliveryPrice");
+
+        const totalPriceInput =
+            document.getElementById("totalPrice");
+
+        const productTotal =
+            document.getElementById("productTotal");
+
+        const deliveryTotal =
+            document.getElementById("deliveryTotal");
+
+        const orderTotal =
+            document.getElementById("orderTotal");
+
+
+        /* =====================================================
+                       GET DELIVERY PRICE
+        ====================================================== */
+
+        function getDeliveryPrice() {
+
+            const wilaya =
+                wilayaInput.value;
+
+
+            const selectedMethod =
+                document.querySelector(
+                    'input[name="deliveryMethod"]:checked'
+                );
+
+
+            if (
+                !wilaya ||
+                !selectedMethod
+            ) {
+
+                return 0;
+
+            }
+
+
+            const data =
+                deliveryPrices[wilaya];
+
+
+            if (!data) {
+
+                return 0;
+
+            }
+
+
+            if (
+                selectedMethod.value ===
+                "Home Delivery"
+            ) {
+
+                return data.home;
+
+            }
+
+
+            if (
+                selectedMethod.value ===
+                "Stop Desk"
+            ) {
+
+                return data.stopDesk;
+
+            }
+
+
+            return 0;
+
+        }
+
+
+        /* =====================================================
+                           UPDATE TOTAL
+        ====================================================== */
+
+        function updateTotal() {
+
+            const price =
+                parseFloat(
+                    productPriceInput.value
+                ) || 0;
+
+
+            const quantity =
+                parseInt(
+                    quantityInput.value
+                ) || 1;
+
+
+            const delivery =
+                getDeliveryPrice();
+
+
+            const subtotal =
+                price * quantity;
+
+
+            const total =
+                subtotal + delivery;
+
+
+            productTotal.textContent =
+                subtotal.toLocaleString(
+                    "fr-DZ"
+                );
+
+
+            deliveryTotal.textContent =
+                delivery.toLocaleString(
+                    "fr-DZ"
+                );
+
+
+            orderTotal.textContent =
+                total.toLocaleString(
+                    "fr-DZ"
+                );
+
+
+            deliveryPriceInput.value =
+                delivery;
+
+
+            totalPriceInput.value =
+                total;
+
+        }
+
+
+        /* =====================================================
+                       DELIVERY METHOD
+        ====================================================== */
+
+        document
+            .querySelectorAll(
+                'input[name="deliveryMethod"]'
+            )
+            .forEach(
+                function (radio) {
+
+                    radio.addEventListener(
+                        "change",
+                        function () {
+
+                            if (
+                                this.value ===
+                                "Home Delivery"
+                            ) {
+
+                                addressField.style.display =
+                                    "block";
+
+
+                                addressInput.required =
+                                    true;
+
+                            } else {
+
+                                addressField.style.display =
+                                    "none";
+
+
+                                addressInput.required =
+                                    false;
+
+
+                                addressInput.value =
+                                    "";
+
+                            }
+
+
+                            updateTotal();
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+                         WILAYA CHANGE
+        ====================================================== */
+
+        wilayaInput.addEventListener(
+            "change",
+            updateTotal
+        );
+
+
+        /* =====================================================
+                        QUANTITY CHANGE
+        ====================================================== */
+
+        quantityInput.addEventListener(
+            "input",
+            updateTotal
+        );
+
 
         /* =====================================================
                        FORM VALIDATION
@@ -1674,7 +2749,6 @@
             .addEventListener(
                 "submit",
                 event => {
-
 
                     const selected =
                         document.querySelector(
@@ -1720,43 +2794,104 @@
                             "The selected quantity is not available."
                         );
 
+                        return;
+
                     }
+
+
+                    /*
+                        Make sure the total is updated
+                        before submitting.
+                    */
+
+                    updateTotal();
 
                 }
             );
-            
-    const menu = document.getElementById("menu");
-    const hamburger = document.getElementById("hamburger");
-    const image =document.getElementById("close")
-    let number =0
-
-    menu.addEventListener("click", function (e) {
-       
-
-        hamburger.classList.toggle("active");
-        if(number===0){
-            image.src='close.svg'
-            number+=1
-        }
-        else{
-            image.src='menu.svg'
-            number=0
-        }
-
-    });
-
-    // Close menu when clicking a link
-    document.querySelectorAll(".ham_links a").forEach(link => {
-        link.addEventListener("click", function () {
-            hamburger.classList.remove("active");
-            image.src="menu.svg"
-        });
-    });
 
 
+        /* =====================================================
+                          MOBILE MENU
+        ====================================================== */
+
+        const menu =
+            document.getElementById("menu");
+
+        const hamburger =
+            document.getElementById("hamburger");
+
+        const image =
+            document.getElementById("close");
+
+
+        let number = 0;
+
+
+        menu.addEventListener(
+            "click",
+            function () {
+
+                hamburger.classList.toggle(
+                    "active"
+                );
+
+
+                if (number === 0) {
+
+                    image.src =
+                        "close.svg";
+
+                    number += 1;
+
+                } else {
+
+                    image.src =
+                        "menu.svg";
+
+                    number = 0;
+
+                }
+
+            }
+        );
+
+
+        /* CLOSE MOBILE MENU */
+
+        document
+            .querySelectorAll(
+                ".ham_links a"
+            )
+            .forEach(
+                link => {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            hamburger.classList.remove(
+                                "active"
+                            );
+
+                            image.src =
+                                "menu.svg";
+
+                            number = 0;
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+                         INITIAL UPDATE
+        ====================================================== */
+
+        updateTotal();
 
     </script>
-
 
 </body>
 
