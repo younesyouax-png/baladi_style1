@@ -58,6 +58,8 @@
     color: #777;
 }
 
+
+
 .view-all {
     display: flex;
     align-items: center;
@@ -81,8 +83,6 @@
 .view-all:hover {
     opacity: .5;
 }
-
-
 /* =====================================================
    PRODUCTS WRAPPER
 ===================================================== */
@@ -731,3 +731,21 @@
         right: 0;
     }
 }
+
+@media (max-width: 600px) {
+    .view-all {
+        gap: 9px;
+
+        padding: 9px 13px;
+
+        font-size: 8px;
+        letter-spacing: 1.1px;
+
+        border-radius: 2px;
+    }
+
+    .view-all span {
+        font-size: 13px;
+    }
+}
+

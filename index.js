@@ -891,7 +891,7 @@ app.get(
 
             const orders = await Order
                 .find()
-                .sort({ date: -1 });
+                .sort({ date: 1});
 
             res.render("order_dash", {
                 orders
