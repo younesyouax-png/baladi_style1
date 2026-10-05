@@ -312,18 +312,18 @@
                         <button
                             type="button"
                             class="product-view"
-                            onclick="openProductModal(
-                                '<%= product._id %>',
-                                '<%= product.name.replace(/'/g, "\\'") %>',
-                                '<%= product.price %>',
-                                '<%= (product.description || '').replace(/'/g, "\\'") %>',
-                                '<%= product.Image %>',
-                                '<%= product.category || "" %>',
-                                '<%= product.quantity_S || 0 %>',
-                                '<%= product.quantity_M || 0 %>',
-                                '<%= product.quantity_L || 0 %>',
-                                '<%= product.quantity_XL || 0 %>'
-                            )"
+                            onclick='openProductModal(
+    <%- JSON.stringify(product._id) %>,
+    <%- JSON.stringify(product.name) %>,
+    <%- JSON.stringify(product.price) %>,
+    <%- JSON.stringify(product.description || "") %>,
+    <%- JSON.stringify(product.Image) %>,
+    <%- JSON.stringify(product.category || "") %>,
+    <%- JSON.stringify(product.quantity_S || 0) %>,
+    <%- JSON.stringify(product.quantity_M || 0) %>,
+    <%- JSON.stringify(product.quantity_L || 0) %>,
+    <%- JSON.stringify(product.quantity_XL || 0) %>
+)'
                         >
 
                             VIEW ↗
@@ -403,18 +403,18 @@
                             <button
     class="shop-now-btn"
     type="button"
-    onclick="openProductModal(
-        '<%= product._id %>',
-        '<%= product.name.replace(/'/g, "\\'") %>',
-        '<%= product.price %>',
-        '<%= (product.description || '').replace(/'/g, "\\'") %>',
-        '<%= product.Image %>',
-        '<%= product.category || "" %>',
-        '<%= product.quantity_S || 0 %>',
-        '<%= product.quantity_M || 0 %>',
-        '<%= product.quantity_L || 0 %>',
-        '<%= product.quantity_XL || 0 %>'
-    )"
+    onclick='openProductModal(
+    <%- JSON.stringify(product._id) %>,
+    <%- JSON.stringify(product.name) %>,
+    <%- JSON.stringify(product.price) %>,
+    <%- JSON.stringify(product.description || "") %>,
+    <%- JSON.stringify(product.Image) %>,
+    <%- JSON.stringify(product.category || "") %>,
+    <%- JSON.stringify(product.quantity_S || 0) %>,
+    <%- JSON.stringify(product.quantity_M || 0) %>,
+    <%- JSON.stringify(product.quantity_L || 0) %>,
+    <%- JSON.stringify(product.quantity_XL || 0) %>
+)'
 >
     <span>SHOP NOW</span>
     <span class="shop-arrow">→</span>
