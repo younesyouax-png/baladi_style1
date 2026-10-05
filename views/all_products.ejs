@@ -399,26 +399,25 @@
                             </span>
 
 
-                            <button style="border-radius: 0;background: rgb(32, 31, 31);color: white;padding: 5px;font-family: 'Sora',sans-serif;border: none;
-                                type="button"
-                                onclick="openProductModal(
-                                    '<%= product._id %>',
-                                    '<%= product.name.replace(/'/g, "\\'") %>',
-                                    '<%= product.price %>',
-                                    '<%= (product.description || '').replace(/'/g, "\\'") %>',
-                                    '<%= product.Image %>',
-                                    '<%= product.category || "" %>',
-                                    '<%= product.quantity_S || 0 %>',
-                                    '<%= product.quantity_M || 0 %>',
-                                    '<%= product.quantity_L || 0 %>',
-                                    '<%= product.quantity_XL || 0 %>'
-                                )"
-                            >
-
-                                SHOP NOW →
-
-                            </button>
-
+                            <button
+    class="shop-now-btn"
+    type="button"
+    onclick="openProductModal(
+        '<%= product._id %>',
+        '<%= product.name.replace(/'/g, "\\'") %>',
+        '<%= product.price %>',
+        '<%= (product.description || '').replace(/'/g, "\\'") %>',
+        '<%= product.Image %>',
+        '<%= product.category || "" %>',
+        '<%= product.quantity_S || 0 %>',
+        '<%= product.quantity_M || 0 %>',
+        '<%= product.quantity_L || 0 %>',
+        '<%= product.quantity_XL || 0 %>'
+    )"
+>
+    <span>SHOP NOW</span>
+    <span class="shop-arrow">→</span>
+</button>
 
                         </div>
 
