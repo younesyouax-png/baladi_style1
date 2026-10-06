@@ -40,8 +40,6 @@
 
     <nav class="nav">
 
-        <!-- LOGO -->
-
         <div class="logo_container">
 
             <a href="#hero">
@@ -55,8 +53,6 @@
 
         </div>
 
-
-        <!-- NAVIGATION -->
 
         <ul class="nav_links">
 
@@ -93,18 +89,16 @@
         </ul>
 
 
-        <!-- NAV ICONS -->
-
         <div class="nav_icons">
 
-           
-
             <a id="menu">
+
                 <img
                     id="close"
                     src="/menu.svg"
                     alt=""
                 >
+
             </a>
 
         </div>
@@ -205,8 +199,6 @@
             </div>
 
 
-            <!-- SCROLL INDICATOR -->
-
             <div class="scroll_indicator">
 
                 <span></span>
@@ -226,8 +218,6 @@
             class="products-section"
             id="products"
         >
-
-            <!-- HEADER -->
 
             <div class="products-header">
 
@@ -277,8 +267,6 @@
 
             <div class="products-slider">
 
-                <!-- PREVIOUS -->
-
                 <button
                     class="products-arrow products-prev"
                     type="button"
@@ -291,8 +279,6 @@
 
                 </button>
 
-
-                <!-- PRODUCTS -->
 
                 <div class="products-grid">
 
@@ -311,16 +297,12 @@
                                 >
 
 
-                                <!-- NUMBER -->
-
                                 <span class="product-number">
 
                                     <%= String(index + 1).padStart(2, "0") %>
 
                                 </span>
 
-
-                                <!-- NEW -->
 
                                 <span class="new-badge">
                                     NEW
@@ -353,6 +335,8 @@
                                     data-l="<%= product.quantity_L || 0 %>"
 
                                     data-xl="<%= product.quantity_XL || 0 %>"
+
+                                    data-2xl="<%= product.quantity_2XL || 0 %>"
                                 >
 
                                     +
@@ -365,8 +349,6 @@
                             <!-- ================= INFO ================= -->
 
                             <div class="product-info">
-
-                                <!-- NAME + PRICE -->
 
                                 <div class="product-top">
 
@@ -384,16 +366,12 @@
                                 </div>
 
 
-                                <!-- DESCRIPTION -->
-
                                 <p style="font-family: Rubik,sans-serif;">
 
                                     <%= product.description %>
 
                                 </p>
 
-
-                                <!-- BOTTOM -->
 
                                 <div class="product-bottom">
 
@@ -429,6 +407,8 @@
                                         data-l="<%= product.quantity_L || 0 %>"
 
                                         data-xl="<%= product.quantity_XL || 0 %>"
+
+                                        data-2xl="<%= product.quantity_2XL || 0 %>"
                                     >
 
                                         <span>
@@ -451,8 +431,6 @@
 
                 </div>
 
-
-                <!-- NEXT -->
 
                 <button
                     class="products-arrow products-next"
@@ -786,19 +764,13 @@
         aria-hidden="true"
     >
 
-        <!-- OVERLAY -->
-
         <div
             class="product-modal-overlay"
             id="modalOverlay"
         ></div>
 
 
-        <!-- MODAL BOX -->
-
         <div class="product-modal-box">
-
-            <!-- CLOSE -->
 
             <button
                 type="button"
@@ -816,8 +788,6 @@
 
             <div class="modal-product">
 
-                <!-- IMAGE -->
-
                 <div class="modal-image">
 
                     <img
@@ -828,8 +798,6 @@
 
                 </div>
 
-
-                <!-- INFO -->
 
                 <div class="modal-product-info">
 
@@ -873,8 +841,6 @@
 
             <div class="modal-order">
 
-                <!-- HEADER -->
-
                 <div class="order-header">
 
                     <span>
@@ -896,8 +862,6 @@
 
                 </div>
 
-
-                <!-- FORM -->
 
                 <form
                     action="/order"
@@ -1431,6 +1395,30 @@
 
                             </label>
 
+
+                            <!-- ================= 2XL ================= -->
+
+                            <label
+                                class="size-option"
+                                id="size2XL"
+                            >
+
+                                <input
+                                    type="radio"
+                                    name="size"
+                                    value="2XL"
+                                >
+
+                                <span>
+                                    2XL
+                                </span>
+
+                                <small>
+                                    AVAILABLE
+                                </small>
+
+                            </label>
+
                         </div>
 
                     </div>
@@ -1449,8 +1437,6 @@
                             name="quantity"
                             id="orderQuantity"
                             value="0"
-                            
-                            
                             required
                         >
 
@@ -1542,9 +1528,18 @@
                     <div class="cash-delivery">
                         CASH ON DELIVERY
                     </div>
-                    <div style="font-size: 20px;color: #fafafa;" class="cash-delivery">
-        delivery with <span style="color: rgb(171, 14, 14);">golivri</span>
-    </div>
+
+                    <div
+                        style="font-size: 20px;color: #fafafa;"
+                        class="cash-delivery"
+                    >
+
+                        delivery with
+                        <span style="color: rgb(171, 14, 14);">
+                            golivri
+                        </span>
+
+                    </div>
 
                 </form>
 
@@ -1690,7 +1685,8 @@
             S: 0,
             M: 0,
             L: 0,
-            XL: 0
+            XL: 0,
+            "2XL": 0
 
         };
 
@@ -1736,7 +1732,10 @@
                     Number(button.dataset.l) || 0,
 
                 XL:
-                    Number(button.dataset.xl) || 0
+                    Number(button.dataset.xl) || 0,
+
+                "2XL":
+                    Number(button.dataset["2xl"]) || 0
 
             };
 
@@ -1801,11 +1800,6 @@
                 .getElementById("orderProductName")
                 .value = name;
 
-
-            /*
-                IMPORTANT:
-                Price MUST be set AFTER reset()
-            */
 
             document
                 .getElementById("orderProductPrice")
@@ -1894,13 +1888,18 @@
                 "XL"
             );
 
+            updateSize(
+                "size2XL",
+                "2XL"
+            );
+
 
             /* =================================================
                        FIND FIRST AVAILABLE SIZE
             ================================================== */
 
             const firstAvailable =
-                ["S", "M", "L", "XL"].find(
+                ["S", "M", "L", "XL", "2XL"].find(
                     size =>
                         currentStock[size] > 0
                 );
@@ -2099,57 +2098,78 @@
                        QUANTITY VALIDATION
         ====================================================== */
 
-       /* =====================================================
-                   QUANTITY VALIDATION
-====================================================== */
+        orderQuantity.addEventListener(
+            "input",
+            () => {
 
-orderQuantity.addEventListener(
-    "input",
-    () => {
+                const selected =
+                    document.querySelector(
+                        'input[name="size"]:checked'
+                    );
 
-        const selected =
-            document.querySelector(
-                'input[name="size"]:checked'
-            );
 
-        if (!selected) {
-            updateTotal();
-            return;
-        }
+                if (!selected) {
 
-        const max =
-            currentStock[selected.value];
+                    updateTotal();
 
-        const inputValue =
-            orderQuantity.value;
+                    return;
 
-        // Allow the user to temporarily empty the field
-        if (inputValue === "") {
-            updateTotal();
-            return;
-        }
+                }
 
-        let value =
-            Number(inputValue);
 
-        // Prevent invalid values
-        if (isNaN(value)) {
-            orderQuantity.value = "";
-            updateTotal();
-            return;
-        }
+                const max =
+                    currentStock[selected.value];
 
-        // Only limit the maximum
-        if (value > max) {
-            value = max;
-        }
 
-        orderQuantity.value = value;
+                const inputValue =
+                    orderQuantity.value;
 
-        updateTotal();
 
-    }
-);
+                // Allow the user to temporarily empty the field
+
+                if (inputValue === "") {
+
+                    updateTotal();
+
+                    return;
+
+                }
+
+
+                let value =
+                    Number(inputValue);
+
+
+                // Prevent invalid values
+
+                if (isNaN(value)) {
+
+                    orderQuantity.value = "";
+
+                    updateTotal();
+
+                    return;
+
+                }
+
+
+                // Only limit the maximum
+
+                if (value > max) {
+
+                    value = max;
+
+                }
+
+
+                orderQuantity.value =
+                    value;
+
+
+                updateTotal();
+
+            }
+        );
 
 
         /* =====================================================
@@ -2804,11 +2824,6 @@ orderQuantity.addEventListener(
 
                     }
 
-
-                    /*
-                        Make sure the total is updated
-                        before submitting.
-                    */
 
                     updateTotal();
 

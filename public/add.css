@@ -869,3 +869,87 @@
         transform: translateY(0);
     }
 }
+/* ==================== CATEGORY SELECT ==================== */
+
+.field select#category {
+    width: 100%;
+    height: 52px;
+    padding: 0 45px 0 16px;
+
+    background: #111;
+    color: #fff;
+
+    border: 1px solid #2b2b2b;
+    border-radius: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    outline: none;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition: all 0.3s ease;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, #888 50%),
+        linear-gradient(135deg, #888 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 20px) 22px,
+        calc(100% - 15px) 22px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+}
+
+
+/* Hover */
+
+.field select#category:hover {
+    border-color: #555;
+}
+
+
+/* Focus */
+
+.field select#category:focus {
+    border-color: #fff;
+    box-shadow: 0 0 0 1px #fff;
+}
+
+
+/* Options */
+
+.field select#category option {
+    background: #111;
+    color: #fff;
+    padding: 12px;
+}
+
+
+/* Selected option */
+
+.field select#category option:checked {
+    background: #222;
+    color: #fff;
+}
+/* =========================
+   IMAGE INPUT
+========================= */
+
+#image {
+    display: none;
+}
+
+.upload-area {
+    cursor: pointer;
+}

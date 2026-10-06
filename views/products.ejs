@@ -6,52 +6,86 @@
 
     <meta charset="UTF-8">
 
-    <title>Products</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Products | Baladi Style</title>
 
     <link rel="stylesheet" href="/dashboard.css">
-    
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
 </head>
 
 
 <body>
 
-    <div class="dashboard">
 
-        <!-- SIDEBAR -->
-        <%- include("slidebar") %>
+    <%- include("slidebar") %>
 
 
-        <!-- CONTENT -->
-        <main class="content">
-
-            <h1>Products</h1>
+    <main class="content">
 
 
-            <section class="products-section">
+        <div class="products-section">
 
 
-                <!-- SECTION HEADER -->
-                <div class="products-section-header">
+            <div class="products-section-header">
 
-                    <div>
+                <div>
 
-                        <span>INVENTORY</span>
+                    <span>
+                        STORE MANAGEMENT
+                    </span>
 
-                        <h1>YOUR PRODUCTS</h1>
+                    <h1>
+                        PRODUCTS
+                    </h1>
 
-                    </div>
+                </div>
 
 
-                    <a href="/add_product" class="add-product">
-                        + ADD PRODUCT
+                <a
+                    href="/add_product"
+                    class="add-product"
+                >
+                    + ADD PRODUCT
+                </a>
+
+            </div>
+
+
+            <% if (products.length === 0) { %>
+
+
+                <div class="no-products">
+
+                    <h2>
+                        NO PRODUCTS
+                    </h2>
+
+                    <p>
+                        You haven't added any products yet.
+                    </p>
+
+                    <a
+                        href="/add_product"
+                        class="add-product"
+                    >
+                        ADD YOUR FIRST PRODUCT
                     </a>
 
                 </div>
 
 
+            <% } else { %>
 
-                <!-- PRODUCTS LIST -->
+
                 <div class="products-list">
 
 
@@ -61,19 +95,28 @@
                         <div class="product-row">
 
 
-                            <!-- IMAGE -->
+                            <!-- =================================
+                                 PRODUCT IMAGE
+                            ================================== -->
+
                             <div class="product-thumb">
 
-                               <img src="<%= product.Image %>" alt="<%= product.name %>" loading="lazy">
+                                <img
+                                    src="<%= product.Image %>"
+                                    alt="<%= product.name %>"
+                                >
+
                             </div>
 
 
+                            <!-- =================================
+                                 PRODUCT DETAILS
+                            ================================== -->
 
-                            <!-- NAME + DESCRIPTION -->
                             <div class="product-details">
 
                                 <span class="product-number">
-                                    #<%= String(index + 1).padStart(2, "0") %>
+                                    PRODUCT <%= String(index + 1).padStart(2, "0") %>
                                 </span>
 
                                 <h2>
@@ -81,34 +124,47 @@
                                 </h2>
 
                                 <p>
-                                    <%= product.description %>
+                                    <%= product.category || "STREETWEAR" %>
                                 </p>
 
                             </div>
 
 
+                            <!-- =================================
+                                 PRICE
+                            ================================== -->
 
-                            <!-- PRICE -->
                             <div class="product-price">
 
-                                <span>PRICE</span>
+                                <span>
+                                    PRICE
+                                </span>
 
                                 <strong>
                                     <%= product.price %>
-                                    <small>DA</small>
                                 </strong>
+
+                                <small>
+                                    DA
+                                </small>
 
                             </div>
 
 
+                            <!-- =================================
+                                 STOCK
+                            ================================== -->
 
-                            <!-- STOCK -->
                             <div class="product-stock">
 
 
+                                <!-- S -->
+
                                 <div class="stock-item">
 
-                                    <span>S</span>
+                                    <span>
+                                        S
+                                    </span>
 
                                     <strong>
                                         <%= product.quantity_S || 0 %>
@@ -117,9 +173,13 @@
                                 </div>
 
 
+                                <!-- M -->
+
                                 <div class="stock-item">
 
-                                    <span>M</span>
+                                    <span>
+                                        M
+                                    </span>
 
                                     <strong>
                                         <%= product.quantity_M || 0 %>
@@ -128,9 +188,13 @@
                                 </div>
 
 
+                                <!-- L -->
+
                                 <div class="stock-item">
 
-                                    <span>L</span>
+                                    <span>
+                                        L
+                                    </span>
 
                                     <strong>
                                         <%= product.quantity_L || 0 %>
@@ -139,9 +203,13 @@
                                 </div>
 
 
+                                <!-- XL -->
+
                                 <div class="stock-item">
 
-                                    <span>XL</span>
+                                    <span>
+                                        XL
+                                    </span>
 
                                     <strong>
                                         <%= product.quantity_XL || 0 %>
@@ -150,15 +218,29 @@
                                 </div>
 
 
+                                <!-- 2XL -->
+
+                                <div class="stock-item">
+
+                                    <span>
+                                        2XL
+                                    </span>
+
+                                    <strong>
+                                        <%= product.quantity_2XL || 0 %>
+                                    </strong>
+
+                                </div>
+
+
                             </div>
 
 
+                            <!-- =================================
+                                 ACTION
+                            ================================== -->
 
-                            <!-- ACTION -->
                             <div class="product-action">
-
-                                
-
 
                                 <form
                                     action="/dashboard/delete_product/<%= product._id %>"
@@ -184,30 +266,17 @@
                     <% }) %>
 
 
-
-                    <!-- NO PRODUCTS -->
-                    <% if (products.length === 0) { %>
-
-                        <div class="no-products">
-
-                            <h2>NO PRODUCTS</h2>
-
-                            <p>
-                                You haven't added any products yet.
-                            </p>
-
-                        </div>
-
-                    <% } %>
-
-
                 </div>
 
-            </section>
 
-        </main>
+            <% } %>
 
-    </div>
+
+        </div>
+
+
+    </main>
+
 
 </body>
 

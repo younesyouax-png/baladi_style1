@@ -41,6 +41,7 @@ const products_schema = new mongoose.Schema({
     quantity_M: Number,
     quantity_L: Number,
     quantity_XL: Number,
+    quantity_2XL: Number,
     date: Date,
     category: String
 });
@@ -210,6 +211,7 @@ app.post(
                 quantity_M,
                 quantity_L,
                 quantity_XL,
+                quantity_2XL,
                 category
             } = req.body;
 
@@ -230,6 +232,7 @@ app.post(
                 quantity_M,
                 quantity_L,
                 quantity_XL,
+                quantity_2XL,
                 category,
 
                 Image: result.secure_url,
@@ -330,13 +333,17 @@ app.post("/order", async (req, res) => {
 
         } else if (size === "XL") {
 
-            stockField = "quantity_XL";
+    stockField = "quantity_XL";
 
-        } else {
+} else if (size === "2XL") {
 
-            return res.status(400).send("Invalid size");
+    stockField = "quantity_2XL";
 
-        }
+} else {
+
+    return res.status(400).send("Invalid size");
+
+}
 
         // ------------------------------------------
         // Find product
@@ -1045,17 +1052,23 @@ app.post(
 
             } else if (order.size === "XL") {
 
-                product.quantity_XL =
-                    Number(product.quantity_XL || 0) +
-                    quantity;
+    product.quantity_XL =
+        Number(product.quantity_XL || 0) +
+        quantity;
 
-            } else {
+} else if (order.size === "2XL") {
 
-                return res.status(400).send(
-                    "Invalid size"
-                );
+    product.quantity_2XL =
+        Number(product.quantity_2XL || 0) +
+        quantity;
 
-            }
+} else {
+
+    return res.status(400).send(
+        "Invalid size"
+    );
+
+}
 
             await product.save();
 
