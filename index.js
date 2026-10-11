@@ -163,6 +163,8 @@ mongoose
     });
 
 // ADD PRODUCT
+
+// ADD PRODUCT
 app.post(
     "/dashboard/add_product",
     upload.single("image"),
@@ -182,18 +184,39 @@ app.post(
                 category
             } = req.body;
 
+            if (!req.file) {
+                return res.status(400).send(
+                    "Please select a product image"
+                );
+            }
+
+            // Upload optimized image to Cloudinary
             const result = await cloudinary.uploader.upload(
                 req.file.path,
                 {
-                    folder: "baladi-style/products"
+                    folder: "baladi-style/products",
+                    transformation: [
+                        {
+                            width: 1200,
+                            height: 1200,
+                            crop: "limit",
+                            quality: "auto",
+                            fetch_format: "auto"
+                        }
+                    ]
                 }
             );
 
+            // Save product in MongoDB
             const new_product = new Product({
                 name,
                 description,
                 price,
-                sizes,
+                sizes: Array.isArray(sizes)
+                    ? sizes
+                    : sizes
+                        ? [sizes]
+                        : [],
                 quantity_S,
                 quantity_M,
                 quantity_L,
@@ -205,13 +228,22 @@ app.post(
             });
 
             await new_product.save();
+
             res.redirect("/dashboard/products");
+
         } catch (error) {
-            console.error(error);
-            res.status(500).send("Error uploading product");
+            console.error(
+                "ADD PRODUCT ERROR:",
+                error
+            );
+
+            res.status(500).send(
+                "Error uploading product"
+            );
         }
     }
 );
+
 
 // CREATE ORDER
 app.post("/order", async (req, res) => {
@@ -643,11 +675,67 @@ app.get(
 );
 
 // DELETE PRODUCT
+
+// DELETE PRODUCT AND ITS CLOUDINARY IMAGE
 app.post(
     "/dashboard/delete_product/:id",
     requireAdmin,
     async (req, res) => {
         try {
+            // Find the product first
+            const product = await Product.findById(
+                req.params.id
+            );
+
+            if (!product) {
+                return res.status(404).send(
+                    "Product not found"
+                );
+            }
+
+            // Delete the image from Cloudinary
+            if (product.Image) {
+                try {
+                    const imageUrl = product.Image;
+
+                    // Extract the public ID from the Cloudinary URL
+                    const match = imageUrl.match(
+                        /\/upload\/(?:v\d+\/)?(.+)\.[^/.]+$/
+                    );
+
+                    if (
+                        imageUrl.includes("res.cloudinary.com") &&
+                        match
+                    ) {
+                        const publicId = match[1];
+
+                        const result =
+                            await cloudinary.uploader.destroy(
+                                publicId,
+                                {
+                                    resource_type: "image",
+                                    invalidate: true
+                                }
+                            );
+
+                        console.log(
+                            "Cloudinary image deletion:",
+                            result.result
+                        );
+                    }
+                } catch (cloudinaryError) {
+                    console.error(
+                        "Cloudinary deletion error:",
+                        cloudinaryError
+                    );
+
+                    return res.status(500).send(
+                        "Could not delete the product image. The product was not deleted."
+                    );
+                }
+            }
+
+            // Delete the product from MongoDB
             await Product.findByIdAndDelete(
                 req.params.id
             );
@@ -665,24 +753,6 @@ app.post(
     }
 );
 
-// DELETE ORDER
-app.post(
-    "/dashboard/delete_order/:id",
-    requireAdmin,
-    async (req, res) => {
-        try {
-            await Order.findByIdAndDelete(
-                req.params.id
-            );
-
-            res.redirect("/dashboard/orders");
-
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Server error");
-        }
-    }
-);
 
 // RETURN ORDER
 app.post(

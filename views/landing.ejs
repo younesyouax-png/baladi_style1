@@ -291,10 +291,14 @@
                             <div class="product-image">
 
                                 <img
-                                    src="<%= product.Image %>"
-                                    alt="<%= product.name %>"
-                                    loading="lazy"
-                                >
+    src="<%= product.Image && product.Image.includes('/upload/')
+        ? product.Image.replace('/upload/', '/upload/f_auto,q_auto,w_600/')
+        : product.Image %>"
+    alt="<%= product.name %>"
+    loading="lazy"
+    decoding="async"
+    width="600"
+>
 
 
                                 <span class="product-number">
@@ -1742,9 +1746,14 @@
 
             /* ================= PRODUCT INFO ================= */
 
-            document
-                .getElementById("modalProductImage")
-                .src = image;
+            const modalImage = document.getElementById("modalProductImage");
+
+modalImage.src = image && image.includes("/upload/")
+    ? image.replace("/upload/", "/upload/f_auto,q_auto,w_800/")
+    : image;
+
+modalImage.loading = "lazy";
+modalImage.decoding = "async";
 
 
             document
