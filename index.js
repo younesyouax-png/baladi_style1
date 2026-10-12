@@ -625,8 +625,8 @@ app.get("/dashboard", requireAdmin, (req, res) => {
 
 // DASHBOARD PRODUCTS
 app.get(
-    "/dashboard/products",
-    requireAdmin,
+    "/dashboard/products",requireAdmin,
+    
     async (req, res) => {
         try {
             const products = await Product
@@ -677,81 +677,41 @@ app.get(
 // DELETE PRODUCT
 
 // DELETE PRODUCT AND ITS CLOUDINARY IMAGE
+
+
+// DELETE PRODUCT
+// DELETE PRODUCT
 app.post(
     "/dashboard/delete_product/:id",
     requireAdmin,
     async (req, res) => {
         try {
-            // Find the product first
+            console.log("Delete product request:", req.params.id);
+
             const product = await Product.findById(
                 req.params.id
             );
 
             if (!product) {
-                return res.status(404).send(
-                    "Product not found"
-                );
+                console.log("Product not found:", req.params.id);
+                return res.status(404).send("Product not found");
             }
 
-            // Delete the image from Cloudinary
-            if (product.Image) {
-                try {
-                    const imageUrl = product.Image;
+            await Product.findByIdAndDelete(req.params.id);
 
-                    // Extract the public ID from the Cloudinary URL
-                    const match = imageUrl.match(
-                        /\/upload\/(?:v\d+\/)?(.+)\.[^/.]+$/
-                    );
+            console.log("Product deleted successfully:", product.name);
 
-                    if (
-                        imageUrl.includes("res.cloudinary.com") &&
-                        match
-                    ) {
-                        const publicId = match[1];
-
-                        const result =
-                            await cloudinary.uploader.destroy(
-                                publicId,
-                                {
-                                    resource_type: "image",
-                                    invalidate: true
-                                }
-                            );
-
-                        console.log(
-                            "Cloudinary image deletion:",
-                            result.result
-                        );
-                    }
-                } catch (cloudinaryError) {
-                    console.error(
-                        "Cloudinary deletion error:",
-                        cloudinaryError
-                    );
-
-                    return res.status(500).send(
-                        "Could not delete the product image. The product was not deleted."
-                    );
-                }
-            }
-
-            // Delete the product from MongoDB
-            await Product.findByIdAndDelete(
-                req.params.id
-            );
-
-            res.redirect("/dashboard/products");
+            return res.redirect("/dashboard/products");
 
         } catch (err) {
-            console.error(
-                "Delete product error:",
-                err
-            );
-
-            res.status(500).send("Server error");
+            console.error("DELETE PRODUCT ERROR:", err);
+            return res.status(500).send("Error deleting product");
         }
     }
 );
+
+
+
 
 
 // RETURN ORDER
@@ -846,7 +806,8 @@ app.post(
         }
     }
 );
-
+// DELETE ORDER
+app.post( "/dashboard/delete_order/:id", requireAdmin, async (req, res) => { try { await Order.findByIdAndDelete( req.params.id ); res.redirect("/dashboard/orders"); } catch (err) { console.error(err); res.status(500).send("Server error"); } } );
 // LOGOUT
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
