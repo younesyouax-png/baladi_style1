@@ -1,4 +1,6 @@
 require("dotenv").config();
+const compression = require("compression");
+const fs = require("fs");
 
 const express = require("express");
 const session = require("express-session");
@@ -11,6 +13,10 @@ const cloudinary = require("./cloudinary");
 const message = false;
 
 const app = express();
+app.use(compression({
+    level: 6,
+    threshold: 1024
+}));
 
 // DNS
 dns.setServers([
@@ -20,7 +26,10 @@ dns.setServers([
 
 // MULTER
 const upload = multer({
-    dest: "tmp/"
+    dest: "tmp/",
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    }
 });
 
 // PRODUCT SCHEMA
@@ -129,7 +138,12 @@ const Order = mongoose.model("Order", order_schema);
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+// STATIC FILE CACHING
+app.use(express.static("public", {
+    maxAge: "30d",
+    etag: true,
+    lastModified: true
+}));
 
 app.use(
     session({
@@ -240,6 +254,16 @@ app.post(
             res.status(500).send(
                 "Error uploading product"
             );
+        } finally {
+            if (req.file?.path) {
+                try {
+                    await fs.promises.unlink(req.file.path);
+                } catch (cleanupError) {
+                    if (cleanupError.code !== "ENOENT") {
+                        console.error("TEMP FILE CLEANUP ERROR:", cleanupError);
+                    }
+                }
+            }
         }
     }
 );
@@ -458,8 +482,12 @@ app.get("/", async (req, res) => {
 app.get("/products", async (req, res) => {
     try {
         const products = await Product
-            .find()
-            .sort({ date: -1 });
+    .find()
+    .select(
+        "Image name description price sizes category quantity_S quantity_M quantity_L quantity_XL quantity_2XL date"
+    )
+    .sort({ date: -1 })
+    .lean();
 
         const message =
             req.query.orderSuccess === "true";
